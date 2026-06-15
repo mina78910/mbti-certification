@@ -136,6 +136,22 @@
         </div>
 
         <p id="result-message" class="result-message"></p>
+
+        <div class="result-actions">
+          <button id="result-detail-button" class="primary-button" type="button">試験結果詳細を見る</button>
+        </div>
+      </section>
+
+      <section id="result-detail" class="card result-detail-card is-hidden" aria-live="polite" aria-labelledby="result-detail-title">
+        <div class="section-heading">
+          <p class="eyebrow">Exam Result Detail</p>
+          <h2 id="result-detail-title">試験結果詳細</h2>
+          <p>提出済みの試験について、各問題の回答内容・正解・正否・解説を確認できます。</p>
+        </div>
+        <div id="result-detail-list" class="result-detail-list"></div>
+        <div class="result-detail-actions">
+          <button id="result-detail-back-button" class="secondary-button" type="button">試験結果に戻る</button>
+        </div>
       </section>
     </main>
 
