@@ -188,7 +188,7 @@ function renderQuestion() {
       <p class="answer-heading">正解</p>
       <p class="answer-correct">${getCorrectAnswerText(question)}</p>
       <p class="answer-heading">解説</p>
-      <p class="answer-copy">${question.explanation}</p>
+      ${getExplanationHtml(question)}
     </div>
   `;
 }
@@ -258,6 +258,22 @@ function getCorrectAnswerText(question) {
     .join('<br><br>');
 }
 
+function getExplanationHtml(question) {
+  const optionExplanations = question.options.filter(({ explanation }) => explanation);
+
+  if (optionExplanations.length > 0) {
+    return `
+      <div class="answer-copy">
+        ${optionExplanations.map((option) => `
+          <p><strong>${option.displayLabel}. ${option.text}</strong><br>${option.explanation}</p>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  return `<p class="answer-copy">${question.explanation || ''}</p>`;
+}
+
 function getSelectedAnswerText(question) {
   const selectedAnswers = answers[question.id] || [];
   if (selectedAnswers.length === 0) {
@@ -295,7 +311,7 @@ function renderResultDetailPage() {
           </div>
           <div>
             <dt>解説</dt>
-            <dd>${question.explanation}</dd>
+            <dd>${getExplanationHtml(question)}</dd>
           </div>
         </dl>
       </article>
