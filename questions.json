@@ -3,7 +3,7 @@
     "id": "mbti-basic-certification-001",
     "title": "MBTI基礎認定試験",
     "description": "MBTIの基本概念・4つの指標・心理機能・実践知識を確認する試験です。",
-    "passingScore": 80,
+    "passingScore": 60,
     "timeLimitMinutes": 20,
     "shuffleQuestions": true,
     "shuffleOptions": true
