@@ -176,6 +176,32 @@ body.exam-mode .exam-card { display: flex; }
 .option-row span strong { font-weight: 400; }
 .review-later { display: flex; gap: 8px; align-items: center; margin-top: 36px; color: #1f2023; font-size: 13px; font-weight: 700; }
 .review-later input { width: auto; }
+.answer-shortcut {
+  color: #425057;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 42px;
+  max-width: 520px;
+}
+.answer-shortcut p { margin: 0 0 10px; }
+.answer-reveal-button {
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 8px 14px;
+}
+.answer-explanation {
+  background: #f6fbfd;
+  border: 1px dashed #80bed2;
+  color: #1f2023;
+  line-height: 1.7;
+  margin-top: 38vh;
+  max-width: 760px;
+  padding: 18px 20px;
+}
+.answer-explanation:focus { outline: 3px solid rgba(0, 153, 200, .28); }
+.answer-explanation p { margin: 0 0 10px; }
+.answer-explanation p:last-child { margin-bottom: 0; }
+.answer-label { color: var(--brand-dark); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .question-action-row { display: flex; justify-content: flex-end; gap: 8px; align-items: center; margin-top: auto; }
 .exam-actions, .finish-actions { display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
 .exam-actions button, .finish-actions button { border-radius: 0; font-size: 14px; min-width: 80px; padding: 10px 13px; }

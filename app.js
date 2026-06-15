@@ -57,6 +57,15 @@ function optionInputType(question) {
   return question.type === 'multiple' ? 'checkbox' : 'radio';
 }
 
+function formatCorrectAnswers(question) {
+  return question.correctAnswers
+    .map((answerId) => {
+      const option = question.options.find(({ id }) => id === answerId);
+      return option ? `${answerId}. ${option.text}` : answerId;
+    })
+    .join(' / ');
+}
+
 function saveCurrentAnswer() {
   const question = questions[currentIndex];
   if (!question) return;
@@ -136,6 +145,15 @@ function renderQuestion() {
       <input id="mark-for-review" type="checkbox" ${isMarked ? 'checked' : ''} />
       <span>Mark this item for later review.</span>
     </label>
+    <div class="answer-shortcut">
+      <p>ここから先は遊び用の裏技です。試験っぽさを残すため、回答・解説は少し下に隠してあります。</p>
+      <button class="answer-reveal-button secondary-button" type="button" aria-controls="answer-explanation" aria-expanded="false">回答・解説を表示する</button>
+    </div>
+    <section id="answer-explanation" class="answer-explanation is-hidden" aria-label="回答と解説" tabindex="-1">
+      <p class="answer-label">Answer / Explanation</p>
+      <p><strong>正解:</strong> ${formatCorrectAnswers(question)}</p>
+      <p><strong>解説:</strong> ${question.explanation}</p>
+    </section>
   `;
 }
 
@@ -275,6 +293,19 @@ nextButton.addEventListener('click', () => {
     currentIndex += 1;
     renderQuestion();
   }
+});
+
+questionPanel.addEventListener('click', (event) => {
+  const revealButton = event.target.closest('.answer-reveal-button');
+  if (!revealButton) return;
+
+  const answerExplanation = questionPanel.querySelector('#answer-explanation');
+  if (!answerExplanation) return;
+
+  answerExplanation.classList.remove('is-hidden');
+  revealButton.setAttribute('aria-expanded', 'true');
+  answerExplanation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  answerExplanation.focus({ preventScroll: true });
 });
 
 reviewButton.addEventListener('click', showReviewPage);
