@@ -50,11 +50,24 @@ function shuffleItems(items) {
   return shuffled;
 }
 
-function prepareQuestions(rawQuestions) {
-  const preparedQuestions = rawQuestions.map((question) => ({
-    ...question,
-    options: examConfig.shuffleOptions ? shuffleItems(question.options) : [...question.options],
+const optionDisplayLabels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+function withDisplayLabels(options) {
+  return options.map((option, index) => ({
+    ...option,
+    displayLabel: optionDisplayLabels[index] || String(index + 1),
   }));
+}
+
+function prepareQuestions(rawQuestions) {
+  const preparedQuestions = rawQuestions.map((question) => {
+    const options = examConfig.shuffleOptions ? shuffleItems(question.options) : [...question.options];
+
+    return {
+      ...question,
+      options: withDisplayLabels(options),
+    };
+  });
 
   return examConfig.shuffleQuestions ? shuffleItems(preparedQuestions) : preparedQuestions;
 }
@@ -151,7 +164,7 @@ function renderQuestion() {
       ${question.options.map((option) => `
         <label class="option-row">
           <input type="${inputType}" name="${question.id}" value="${option.id}" ${selectedAnswers.includes(option.id) ? 'checked' : ''} />
-          <span><strong>${option.id}.</strong> ${option.text}</span>
+          <span><strong>${option.displayLabel}.</strong> ${option.text}</span>
         </label>
       `).join('')}
     </div>
@@ -177,7 +190,11 @@ function renderQuestion() {
 function renderReviewPage() {
   reviewTableBody.innerHTML = questions.map((question, index) => {
     const selectedAnswers = answers[question.id] || [];
-    const answerText = selectedAnswers.length > 0 ? selectedAnswers.join(', ') : '未回答';
+    const answerText = selectedAnswers.length > 0
+      ? selectedAnswers
+        .map((answerId) => question.options.find(({ id }) => id === answerId)?.displayLabel || answerId)
+        .join(', ')
+      : '未回答';
     const questionNumber = index + 1;
     const numberContent = markedQuestions[question.id]
       ? `<a href="#exam" data-question-index="${index}">No.${questionNumber}</a>`
@@ -213,7 +230,7 @@ function getCorrectAnswerText(question) {
   return question.correctAnswers
     .map((answerId) => {
       const option = question.options.find(({ id }) => id === answerId);
-      return option ? `${option.id}. ${option.text}` : answerId;
+      return option ? `${option.displayLabel}. ${option.text}` : answerId;
     })
     .join(' / ');
 }
