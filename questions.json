@@ -23,25 +23,28 @@
       "options": [
         {
           "id": "A",
-          "text": "目の前の状況や刺激を直接捉え、即座に反応する"
+          "text": "目の前の状況や刺激を直接捉え、即座に反応する",
+          "explanation": "目の前の状況や刺激を直接捉え、即座に反応するため、外向的感覚（Se）の特徴です。"
         },
         {
           "id": "B",
-          "text": "過去の経験と現在の状況を照らし合わせる"
+          "text": "過去の経験と現在の状況を照らし合わせる",
+          "explanation": "過去の経験と現在を照らし合わせているため、内向的感覚（Si）の特徴です。"
         },
         {
           "id": "C",
-          "text": "一つの情報から複数の可能性を広げる"
+          "text": "一つの情報から複数の可能性を広げる",
+          "explanation": "一つの情報から複数の可能性を広げているため、外向的直観（Ne）の特徴です。"
         },
         {
           "id": "D",
-          "text": "物事の背後にある一つの意味を見いだす"
+          "text": "物事の背後にある一つの意味を見いだす",
+          "explanation": "背後にある一つの意味や方向性を見いだしているため、内向的直観（Ni）の特徴です。"
         }
       ],
       "correctAnswers": [
         "A"
-      ],
-      "explanation": "Seは、今この瞬間に存在する具体的な情報や刺激を捉え、直接関わろうとする知覚機能です。"
+      ]
     },
     {
       "id": "Q002",
@@ -52,25 +55,28 @@
       "options": [
         {
           "id": "A",
-          "text": "目の前の刺激に即座に反応する"
+          "text": "目の前の刺激に即座に反応する",
+          "explanation": "目の前の刺激に即座に反応しているため、外向的感覚（Se）の特徴です。"
         },
         {
           "id": "B",
-          "text": "過去の経験や記憶と現在を比較する"
+          "text": "過去の経験や記憶と現在を比較する",
+          "explanation": "過去の経験や記憶と現在の状況を比較しているため、内向的感覚（Si）の特徴です。"
         },
         {
           "id": "C",
-          "text": "複数の可能性を次々と広げる"
+          "text": "複数の可能性を次々と広げる",
+          "explanation": "複数の可能性を次々と広げているため、外向的直観（Ne）の特徴です。"
         },
         {
           "id": "D",
-          "text": "集団全体の感情を調整する"
+          "text": "集団全体の感情を調整する",
+          "explanation": "集団全体の感情を調整しているため、外向的感情（Fe）の特徴です。"
         }
       ],
       "correctAnswers": [
         "B"
-      ],
-      "explanation": "Siは、現在の情報を過去の経験や蓄積された記憶と照らし合わせて捉える知覚機能です。"
+      ]
     },
     {
       "id": "Q003",
@@ -81,25 +87,28 @@
       "options": [
         {
           "id": "A",
-          "text": "一つの情報から複数の可能性や関連性を広げる"
+          "text": "一つの情報から複数の可能性や関連性を広げる",
+          "explanation": "一つの情報から複数の可能性や関連性へ発想を広げるため、外向的直観（Ne）の特徴です。"
         },
         {
           "id": "B",
-          "text": "過去の経験を基準に安定した方法を選ぶ"
+          "text": "過去の経験を基準に安定した方法を選ぶ",
+          "explanation": "過去の経験を基準に安定した方法を選んでいるため、内向的感覚（Si）の特徴です。"
         },
         {
           "id": "C",
-          "text": "目の前の具体的な刺激に集中する"
+          "text": "目の前の具体的な刺激に集中する",
+          "explanation": "目の前の具体的な刺激に集中しているため、外向的感覚（Se）の特徴です。"
         },
         {
           "id": "D",
-          "text": "情報を一つの結論や方向性に収束させる"
+          "text": "情報を一つの結論や方向性に収束させる",
+          "explanation": "情報を一つの結論や方向性に収束させているため、内向的直観（Ni）の特徴です。"
         }
       ],
       "correctAnswers": [
         "A"
-      ],
-      "explanation": "Neは、外部の情報からさまざまな関連性を見つけ、複数の可能性へと発想を広げる知覚機能です。"
+      ]
     },
     {
       "id": "Q004",
@@ -110,25 +119,28 @@
       "options": [
         {
           "id": "A",
-          "text": "目の前にある事実をそのまま細かく観察する"
+          "text": "目の前にある事実をそのまま細かく観察する",
+          "explanation": "目の前にある事実を具体的に観察しているため、外向的感覚（Se）の特徴です。"
         },
         {
           "id": "B",
-          "text": "複数のアイデアを際限なく広げる"
+          "text": "複数のアイデアを際限なく広げる",
+          "explanation": "複数のアイデアを広げ続けているため、外向的直観（Ne）の特徴です。"
         },
         {
           "id": "C",
-          "text": "断片的な情報を統合し、一つの意味や方向性を見いだす"
+          "text": "断片的な情報を統合し、一つの意味や方向性を見いだす",
+          "explanation": "断片的な情報を統合し、一つの意味や方向性を見いだすため、内向的直観（Ni）の特徴です。"
         },
         {
           "id": "D",
-          "text": "過去の具体的な経験を正確に再現する"
+          "text": "過去の具体的な経験を正確に再現する",
+          "explanation": "過去の具体的な経験を参照・再現しているため、内向的感覚（Si）の特徴です。"
         }
       ],
       "correctAnswers": [
         "C"
-      ],
-      "explanation": "Niは、複数の情報を内側で統合し、物事の本質や将来の方向性を一つの洞察として捉える知覚機能です。"
+      ]
     },
     {
       "id": "Q005",
@@ -139,25 +151,28 @@
       "options": [
         {
           "id": "A",
-          "text": "自分の中で理論の整合性を追求する"
+          "text": "自分の中で理論の整合性を追求する",
+          "explanation": "自分の中で理論の整合性を追求しているため、内向的思考（Ti）の特徴です。"
         },
         {
           "id": "B",
-          "text": "客観的な基準を用いて、外部の物事を効率的に整理する"
+          "text": "客観的な基準を用いて、外部の物事を効率的に整理する",
+          "explanation": "客観的な基準を用いて外部の物事を効率的に整理しているため、外向的思考（Te）の特徴です。"
         },
         {
           "id": "C",
-          "text": "自分の内面的な価値観を基準に判断する"
+          "text": "自分の内面的な価値観を基準に判断する",
+          "explanation": "自分の内面的な価値観を基準に判断しているため、内向的感情（Fi）の特徴です。"
         },
         {
           "id": "D",
-          "text": "周囲の感情や人間関係を考慮して判断する"
+          "text": "周囲の感情や人間関係を考慮して判断する",
+          "explanation": "周囲の感情や人間関係を考慮して判断しているため、外向的感情（Fe）の特徴です。"
         }
       ],
       "correctAnswers": [
         "B"
-      ],
-      "explanation": "Teは、成果、効率、手順、数値などの客観的な基準を使って、外部環境を整理する判断機能です。"
+      ]
     },
     {
       "id": "Q006",
@@ -168,25 +183,28 @@
       "options": [
         {
           "id": "A",
-          "text": "自分の中で論理や仕組みの整合性を追求する"
+          "text": "自分の中で論理や仕組みの整合性を追求する",
+          "explanation": "自分の中で論理や仕組みの整合性を追求しているため、内向的思考（Ti）の特徴です。"
         },
         {
           "id": "B",
-          "text": "効率や成果を基準に外部の作業を管理する"
+          "text": "効率や成果を基準に外部の作業を管理する",
+          "explanation": "効率や成果を基準に外部の作業を管理しているため、外向的思考（Te）の特徴です。"
         },
         {
           "id": "C",
-          "text": "周囲の人が納得できる結論を優先する"
+          "text": "周囲の人が納得できる結論を優先する",
+          "explanation": "周囲の人が納得できる結論を優先しているため、外向的感情（Fe）の特徴です。"
         },
         {
           "id": "D",
-          "text": "自分が大切にする価値観を優先する"
+          "text": "自分が大切にする価値観を優先する",
+          "explanation": "自分が大切にする価値観を優先しているため、内向的感情（Fi）の特徴です。"
         }
       ],
       "correctAnswers": [
         "A"
-      ],
-      "explanation": "Tiは、物事の仕組みや原理を分析し、自分の中で矛盾のない論理体系を作ろうとする判断機能です。"
+      ]
     },
     {
       "id": "Q007",
@@ -197,25 +215,28 @@
       "options": [
         {
           "id": "A",
-          "text": "自分個人の価値観や気持ちを優先する"
+          "text": "自分個人の価値観や気持ちを優先する",
+          "explanation": "自分個人の価値観や気持ちを優先しているため、内向的感情（Fi）の特徴です。"
         },
         {
           "id": "B",
-          "text": "周囲の感情や人間関係への影響を考慮する"
+          "text": "周囲の感情や人間関係への影響を考慮する",
+          "explanation": "周囲の感情や人間関係への影響を考慮しているため、外向的感情（Fe）の特徴です。"
         },
         {
           "id": "C",
-          "text": "客観的な数値や効率を重視する"
+          "text": "客観的な数値や効率を重視する",
+          "explanation": "客観的な数値や効率を重視しているため、外向的思考（Te）の特徴です。"
         },
         {
           "id": "D",
-          "text": "自分の中で論理的に納得できるかを重視する"
+          "text": "自分の中で論理的に納得できるかを重視する",
+          "explanation": "自分の中で論理的に納得できるかを重視しているため、内向的思考（Ti）の特徴です。"
         }
       ],
       "correctAnswers": [
         "B"
-      ],
-      "explanation": "Feは、周囲の感情や価値観を捉え、人間関係や集団の調和を考慮して判断する機能です。"
+      ]
     },
     {
       "id": "Q008",
@@ -226,25 +247,28 @@
       "options": [
         {
           "id": "A",
-          "text": "周囲の人々の感情を基準に判断する"
+          "text": "周囲の人々の感情を基準に判断する",
+          "explanation": "周囲の人々の感情を基準に判断しているため、外向的感情（Fe）の特徴です。"
         },
         {
           "id": "B",
-          "text": "客観的な成果や効率を基準に判断する"
+          "text": "客観的な成果や効率を基準に判断する",
+          "explanation": "客観的な成果や効率を基準に判断しているため、外向的思考（Te）の特徴です。"
         },
         {
           "id": "C",
-          "text": "自分の内側にある価値観や納得感を基準に判断する"
+          "text": "自分の内側にある価値観や納得感を基準に判断する",
+          "explanation": "自分の内側にある価値観や納得感を基準に判断しているため、内向的感情（Fi）の特徴です。"
         },
         {
           "id": "D",
-          "text": "物事の論理構造を分析して判断する"
+          "text": "物事の論理構造を分析して判断する",
+          "explanation": "物事の論理構造を分析して判断しているため、内向的思考（Ti）の特徴です。"
         }
       ],
       "correctAnswers": [
         "C"
-      ],
-      "explanation": "Fiは、自分自身が何を大切にするか、何に誠実でありたいかという内的な価値観を基準に判断する機能です。"
+      ]
     },
     {
       "id": "Q009",
@@ -528,25 +552,28 @@
       "options": [
         {
           "id": "A",
-          "text": "ISTJ・ESTJ"
+          "text": "ISTJ・ESTJ",
+          "explanation": "ISTJ・ESTJはSiとTeを優勢機能・補助機能として使うため、過去の経験や記憶を参照しながら客観的な基準や効率性で判断します。"
         },
         {
           "id": "B",
-          "text": "ISFJ・ESFJ"
+          "text": "ISFJ・ESFJ",
+          "explanation": "ISFJ・ESFJはSiとFeを使うため、過去の経験に加えて周囲の気持ちや調和を重視します。"
         },
         {
           "id": "C",
-          "text": "INTJ・ENTJ"
+          "text": "INTJ・ENTJ",
+          "explanation": "INTJ・ENTJはNiとTeを使うため、過去の経験よりも将来の方向性や構想を重視します。"
         },
         {
           "id": "D",
-          "text": "ISTP・ESTP"
+          "text": "ISTP・ESTP",
+          "explanation": "ISTP・ESTPはTiとSeを使うため、過去の経験や明確な外部基準よりも論理分析と現状への即応を重視します。"
         }
       ],
       "correctAnswers": [
         "A"
-      ],
-      "explanation": "ISTJとESTJは、SiとTeを優勢機能・補助機能として使用します。Siは過去の経験や記憶を参照し、Teは客観的な基準や効率性に基づいて判断します。"
+      ]
     },
     {
       "id": "Q018",
@@ -557,25 +584,28 @@
       "options": [
         {
           "id": "A",
-          "text": "ISTJ・ESTJ"
+          "text": "ISTJ・ESTJ",
+          "explanation": "ISTJ・ESTJはSiとTeを使うため、慣れ親しんだ方法に加えて効率や客観的基準を重視します。"
         },
         {
           "id": "B",
-          "text": "ISFJ・ESFJ"
+          "text": "ISFJ・ESFJ",
+          "explanation": "ISFJ・ESFJはSiとFeを優勢機能・補助機能として使うため、過去の経験や慣れた方法を大切にしながら周囲の気持ちや調和に配慮します。"
         },
         {
           "id": "C",
-          "text": "INFJ・ENFJ"
+          "text": "INFJ・ENFJ",
+          "explanation": "INFJ・ENFJはNiとFeを使うため、過去の経験よりも意味や将来像を捉えながら人間関係に配慮します。"
         },
         {
           "id": "D",
-          "text": "ISFP・ESFP"
+          "text": "ISFP・ESFP",
+          "explanation": "ISFP・ESFPはFiとSeを使うため、慣れた方法や集団調和よりも自分の価値観と目の前の感覚を重視します。"
         }
       ],
       "correctAnswers": [
         "B"
-      ],
-      "explanation": "ISFJとESFJは、SiとFeを優勢機能・補助機能として使用します。Siは過去の経験や慣れ親しんだ方法を重視し、Feは周囲の感情や人間関係の調和を重視します。"
+      ]
     },
     {
       "id": "Q019",
@@ -586,25 +616,28 @@
       "options": [
         {
           "id": "A",
-          "text": "INTJ・ENTJ"
+          "text": "INTJ・ENTJ",
+          "explanation": "INTJ・ENTJはNiとTeを優勢機能・補助機能として使うため、意味や将来展開を見通し、それを効率的な計画や仕組みに落とし込みます。"
         },
         {
           "id": "B",
-          "text": "INFJ・ENFJ"
+          "text": "INFJ・ENFJ",
+          "explanation": "INFJ・ENFJはNiとFeを使うため、将来像を捉えつつ人々の感情や集団調和を重視します。"
         },
         {
           "id": "C",
-          "text": "INTP・ENTP"
+          "text": "INTP・ENTP",
+          "explanation": "INTP・ENTPはTiとNeを使うため、仕組みの分析と複数の可能性を広げることを重視します。"
         },
         {
           "id": "D",
-          "text": "ISTJ・ESTJ"
+          "text": "ISTJ・ESTJ",
+          "explanation": "ISTJ・ESTJはSiとTeを使うため、将来展開の洞察よりも過去の経験や客観的な効率性を重視します。"
         }
       ],
       "correctAnswers": [
         "A"
-      ],
-      "explanation": "INTJとENTJは、NiとTeを優勢機能・補助機能として使用します。Niは物事の本質や将来の展開を捉え、Teは構想を効率的な計画や仕組みに落とし込みます。"
+      ]
     },
     {
       "id": "Q020",
@@ -615,25 +648,28 @@
       "options": [
         {
           "id": "A",
-          "text": "INTJ・ENTJ"
+          "text": "INTJ・ENTJ",
+          "explanation": "INTJ・ENTJはNiとTeを使うため、将来像を効率的な計画や外部の仕組みに落とし込むことを重視します。"
         },
         {
           "id": "B",
-          "text": "INFJ・ENFJ"
+          "text": "INFJ・ENFJ",
+          "explanation": "INFJ・ENFJはNiとFeを優勢機能・補助機能として使うため、意味や将来像を捉えながら人々の感情や集団全体の調和に働きかけます。"
         },
         {
           "id": "C",
-          "text": "INFP・ENFP"
+          "text": "INFP・ENFP",
+          "explanation": "INFP・ENFPはFiとNeを使うため、自分の価値観や理想を大切にしながら可能性を広げます。"
         },
         {
           "id": "D",
-          "text": "ISFJ・ESFJ"
+          "text": "ISFJ・ESFJ",
+          "explanation": "ISFJ・ESFJはSiとFeを使うため、将来像よりも過去の経験や慣れた方法を土台に周囲へ配慮します。"
         }
       ],
       "correctAnswers": [
         "B"
-      ],
-      "explanation": "INFJとENFJは、NiとFeを優勢機能・補助機能として使用します。Niは物事の意味や将来像を捉え、Feは周囲の感情や集団全体の調和を考えます。"
+      ]
     },
     {
       "id": "Q021",
@@ -644,25 +680,28 @@
       "options": [
         {
           "id": "A",
-          "text": "ISTP・ESTP"
+          "text": "ISTP・ESTP",
+          "explanation": "ISTP・ESTPはTiとSeを優勢機能・補助機能として使うため、論理的な整合性を分析しながら目の前の状況を観察して柔軟に対応します。"
         },
         {
           "id": "B",
-          "text": "ISFP・ESFP"
+          "text": "ISFP・ESFP",
+          "explanation": "ISFP・ESFPはFiとSeを使うため、論理分析よりも自分の価値観と目の前の感覚を重視します。"
         },
         {
           "id": "C",
-          "text": "INTP・ENTP"
+          "text": "INTP・ENTP",
+          "explanation": "INTP・ENTPはTiとNeを使うため、目の前の状況への即応よりも論理分析と可能性の拡張を重視します。"
         },
         {
           "id": "D",
-          "text": "ISTJ・ESTJ"
+          "text": "ISTJ・ESTJ",
+          "explanation": "ISTJ・ESTJはSiとTeを使うため、即時の状況対応よりも経験に基づく方法と効率的な管理を重視します。"
         }
       ],
       "correctAnswers": [
         "A"
-      ],
-      "explanation": "ISTPとESTPは、TiとSeを優勢機能・補助機能として使用します。Tiは物事の仕組みや論理的整合性を分析し、Seは目の前の状況を直接観察して即座に対応します。"
+      ]
     },
     {
       "id": "Q022",
@@ -673,25 +712,28 @@
       "options": [
         {
           "id": "A",
-          "text": "ISTP・ESTP"
+          "text": "ISTP・ESTP",
+          "explanation": "ISTP・ESTPはTiとSeを使うため、自分の価値観よりも論理分析と目の前の状況への対応を重視します。"
         },
         {
           "id": "B",
-          "text": "ISFP・ESFP"
+          "text": "ISFP・ESFP",
+          "explanation": "ISFP・ESFPはFiとSeを優勢機能・補助機能として使うため、自分の価値観や好き嫌いを大切にしながら目の前の環境や感覚的変化を捉えて行動します。"
         },
         {
           "id": "C",
-          "text": "INFP・ENFP"
+          "text": "INFP・ENFP",
+          "explanation": "INFP・ENFPはFiとNeを使うため、目の前の感覚的変化よりも価値観と複数の可能性を重視します。"
         },
         {
           "id": "D",
-          "text": "ISFJ・ESFJ"
+          "text": "ISFJ・ESFJ",
+          "explanation": "ISFJ・ESFJはSiとFeを使うため、自分の価値観と現在の感覚よりも過去の経験と周囲への配慮を重視します。"
         }
       ],
       "correctAnswers": [
         "B"
-      ],
-      "explanation": "ISFPとESFPは、FiとSeを優勢機能・補助機能として使用します。Fiは自分自身の価値観を大切にし、Seは目の前の環境や感覚的な情報を直接捉えます。"
+      ]
     },
     {
       "id": "Q023",
@@ -702,25 +744,28 @@
       "options": [
         {
           "id": "A",
-          "text": "ISTP・ESTP"
+          "text": "ISTP・ESTP",
+          "explanation": "ISTP・ESTPはTiとSeを使うため、可能性を広げるよりも論理分析と目の前の状況への即応を重視します。"
         },
         {
           "id": "B",
-          "text": "INTP・ENTP"
+          "text": "INTP・ENTP",
+          "explanation": "INTP・ENTPはTiとNeを優勢機能・補助機能として使うため、仕組みや論理を分析しながら複数の可能性や新しいアイデアを広げます。"
         },
         {
           "id": "C",
-          "text": "INTJ・ENTJ"
+          "text": "INTJ・ENTJ",
+          "explanation": "INTJ・ENTJはNiとTeを使うため、複数の可能性を広げるよりも方向性を見通して効率的に実行することを重視します。"
         },
         {
           "id": "D",
-          "text": "INFP・ENFP"
+          "text": "INFP・ENFP",
+          "explanation": "INFP・ENFPはFiとNeを使うため、論理分析よりも自分の価値観や理想と可能性の拡張を重視します。"
         }
       ],
       "correctAnswers": [
         "B"
-      ],
-      "explanation": "INTPとENTPは、TiとNeを優勢機能・補助機能として使用します。Tiは物事の仕組みや論理を分析し、Neは複数の可能性や新しいアイデアを広げます。"
+      ]
     },
     {
       "id": "Q024",
@@ -731,25 +776,28 @@
       "options": [
         {
           "id": "A",
-          "text": "ISFP・ESFP"
+          "text": "ISFP・ESFP",
+          "explanation": "ISFP・ESFPはFiとSeを使うため、可能性を広げるよりも自分の価値観と目の前の感覚的情報を重視します。"
         },
         {
           "id": "B",
-          "text": "INFJ・ENFJ"
+          "text": "INFJ・ENFJ",
+          "explanation": "INFJ・ENFJはNiとFeを使うため、自分の価値観と複数の可能性よりも将来像や集団調和を重視します。"
         },
         {
           "id": "C",
-          "text": "INFP・ENFP"
+          "text": "INFP・ENFP",
+          "explanation": "INFP・ENFPはFiとNeを優勢機能・補助機能として使うため、自分の価値観や理想を大切にしながらさまざまな可能性や新しい発想を広げます。"
         },
         {
           "id": "D",
-          "text": "INTP・ENTP"
+          "text": "INTP・ENTP",
+          "explanation": "INTP・ENTPはTiとNeを使うため、自分の価値観や理想よりも論理分析と可能性の拡張を重視します。"
         }
       ],
       "correctAnswers": [
         "C"
-      ],
-      "explanation": "INFPとENFPは、FiとNeを優勢機能・補助機能として使用します。Fiは自分自身の価値観や理想を大切にし、Neはさまざまな可能性や新しい発想を広げます。"
+      ]
     }
   ]
 }
