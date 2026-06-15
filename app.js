@@ -27,6 +27,10 @@ const resultDuration = document.querySelector('#result-duration');
 const resultStatus = document.querySelector('#result-status');
 const resultScoreBody = document.querySelector('#result-score-body');
 const resultMessage = document.querySelector('#result-message');
+const resultDetailButton = document.querySelector('#result-detail-button');
+const resultDetailPage = document.querySelector('#result-detail');
+const resultDetailList = document.querySelector('#result-detail-list');
+const resultDetailBackButton = document.querySelector('#result-detail-back-button');
 
 let examConfig = {};
 let categories = [];
@@ -40,6 +44,7 @@ let remainingSeconds = 20 * 60;
 let timerId = null;
 let isTimerHidden = false;
 let examDurationSeconds = 20 * 60;
+let isExamFinished = false;
 
 function shuffleItems(items) {
   const shuffled = [...items];
@@ -135,9 +140,10 @@ function stopTimer() {
 function showExamPage(index = currentIndex) {
   currentIndex = Math.min(Math.max(index, 0), questions.length - 1);
   document.body.classList.add('exam-mode');
-  document.body.classList.remove('review-mode', 'result-mode');
+  document.body.classList.remove('review-mode', 'result-mode', 'result-detail-mode');
   reviewCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
+  resultDetailPage.classList.add('is-hidden');
   examCard.classList.remove('is-hidden');
   renderQuestion();
   examCard.scrollIntoView({ behavior: 'smooth' });
@@ -213,9 +219,10 @@ function showReviewPage() {
   saveCurrentAnswer();
   renderReviewPage();
   document.body.classList.add('review-mode');
-  document.body.classList.remove('exam-mode', 'result-mode');
+  document.body.classList.remove('exam-mode', 'result-mode', 'result-detail-mode');
   examCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
+  resultDetailPage.classList.add('is-hidden');
   reviewCard.classList.remove('is-hidden');
   reviewCard.scrollIntoView({ behavior: 'smooth' });
 }
@@ -233,6 +240,79 @@ function getCorrectAnswerText(question) {
       return option ? `${option.displayLabel}. ${option.text}` : answerId;
     })
     .join(' / ');
+}
+
+function getSelectedAnswerText(question) {
+  const selectedAnswers = answers[question.id] || [];
+  if (selectedAnswers.length === 0) {
+    return '未回答';
+  }
+
+  return selectedAnswers
+    .map((answerId) => {
+      const option = question.options.find(({ id }) => id === answerId);
+      return option ? `${option.displayLabel}. ${option.text}` : answerId;
+    })
+    .join(' / ');
+}
+
+function renderResultDetailPage() {
+  resultDetailList.innerHTML = questions.map((question, index) => {
+    const correct = isCorrect(question);
+
+    return `
+      <article class="result-detail-item">
+        <h3 class="result-detail-question-title">問題 ${index + 1}</h3>
+        <dl class="result-detail-grid">
+          <div>
+            <dt>問題文</dt>
+            <dd>${question.question}</dd>
+          </div>
+          <div>
+            <dt>あなたの回答</dt>
+            <dd>${getSelectedAnswerText(question)}</dd>
+          </div>
+          <div>
+            <dt>正解の回答</dt>
+            <dd>${getCorrectAnswerText(question)}</dd>
+          </div>
+          <div>
+            <dt>正否</dt>
+            <dd><span class="${correct ? 'correct' : 'incorrect'}">${correct ? '正解' : '不正解'}</span></dd>
+          </div>
+          <div>
+            <dt>解説</dt>
+            <dd>${question.explanation}</dd>
+          </div>
+        </dl>
+      </article>
+    `;
+  }).join('');
+}
+
+function showResultPage() {
+  document.body.classList.remove('exam-mode', 'review-mode', 'result-detail-mode');
+  document.body.classList.add('result-mode');
+  examCard.classList.add('is-hidden');
+  reviewCard.classList.add('is-hidden');
+  resultDetailPage.classList.add('is-hidden');
+  resultPage.classList.remove('is-hidden');
+  resultPage.scrollIntoView({ behavior: 'smooth' });
+}
+
+function showResultDetailPage() {
+  if (!isExamFinished) {
+    return;
+  }
+
+  renderResultDetailPage();
+  document.body.classList.remove('exam-mode', 'review-mode', 'result-mode');
+  document.body.classList.add('result-detail-mode');
+  examCard.classList.add('is-hidden');
+  reviewCard.classList.add('is-hidden');
+  resultPage.classList.add('is-hidden');
+  resultDetailPage.classList.remove('is-hidden');
+  resultDetailPage.scrollIntoView({ behavior: 'smooth' });
 }
 
 function formatJapaneseDate(date) {
@@ -289,13 +369,9 @@ function finishExam() {
   resultMessage.textContent = isPassed
     ? 'おめでとうございます！このたびは、認定試験に見事合格され、MBTI 認定 Web試験に認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
     : `今回は合格基準（${passingScore}%）に届きませんでした。カテゴリ別の正答率は参考値として確認し、復習のうえ再受験をご検討ください。`;
+  isExamFinished = true;
   stopTimer();
-  document.body.classList.remove('exam-mode', 'review-mode');
-  document.body.classList.add('result-mode');
-  examCard.classList.add('is-hidden');
-  reviewCard.classList.add('is-hidden');
-  resultPage.classList.remove('is-hidden');
-  resultPage.scrollIntoView({ behavior: 'smooth' });
+  showResultPage();
 }
 
 function openSubmitModal() {
@@ -320,16 +396,18 @@ form.addEventListener('submit', async (event) => {
     await loadQuestions();
   }
   document.body.classList.add('exam-mode');
-  document.body.classList.remove('review-mode', 'result-mode');
+  document.body.classList.remove('review-mode', 'result-mode', 'result-detail-mode');
   examCard.classList.remove('is-hidden');
   reviewCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
+  resultDetailPage.classList.add('is-hidden');
   questions = prepareQuestions(sourceQuestions);
   totalNumber.textContent = questions.length;
   currentIndex = 0;
   answers = {};
   markedQuestions = {};
   revealedExplanations = {};
+  isExamFinished = false;
   renderQuestion();
   startTimer();
   examCard.scrollIntoView({ behavior: 'smooth' });
@@ -377,10 +455,14 @@ modalConfirmButton.addEventListener('click', () => {
 });
 
 resultBackButton.addEventListener('click', () => {
-  document.body.classList.remove('review-mode', 'result-mode');
+  document.body.classList.remove('review-mode', 'result-mode', 'result-detail-mode');
   resultPage.classList.add('is-hidden');
+  resultDetailPage.classList.add('is-hidden');
   document.querySelector('#application').scrollIntoView({ behavior: 'smooth' });
 });
+
+resultDetailButton.addEventListener('click', showResultDetailPage);
+resultDetailBackButton.addEventListener('click', showResultPage);
 
 submitModal.addEventListener('click', (event) => {
   if (event.target === submitModal) {

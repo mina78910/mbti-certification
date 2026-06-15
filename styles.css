@@ -132,7 +132,8 @@ button {
 
 body.exam-mode,
 body.review-mode,
-body.result-mode { background: #fff; }
+body.result-mode,
+body.result-detail-mode { background: #fff; }
 body.exam-mode .site-header,
 body.exam-mode #notice,
 body.exam-mode #application,
@@ -147,9 +148,16 @@ body.result-mode #notice,
 body.result-mode #application,
 body.result-mode #exam,
 body.result-mode #review { display: none; }
+body.result-detail-mode .site-header,
+body.result-detail-mode #notice,
+body.result-detail-mode #application,
+body.result-detail-mode #exam,
+body.result-detail-mode #review,
+body.result-detail-mode #results { display: none; }
 body.exam-mode .page-shell { padding: 24px 18px 22px; min-height: 100vh; }
 body.review-mode .page-shell { padding: 38px 18px 60px; min-height: 100vh; }
 body.result-mode .page-shell { padding: 0 15px 32px; min-height: 100vh; }
+body.result-detail-mode .page-shell { padding: 38px 18px 60px; min-height: 100vh; }
 body.exam-mode .exam-card { display: flex; }
 .exam-card {
   max-width: none;
@@ -346,6 +354,52 @@ body.review-mode .review-card { display: block; }
   font-size: 18px;
   line-height: 1.55;
   margin: 32px 0 0;
+}
+.result-actions {
+  margin-top: 24px;
+}
+.result-detail-card {
+  color: #1f2023;
+  max-width: 1100px;
+}
+body.result-detail-mode .result-detail-card { display: block; }
+.result-detail-list {
+  display: grid;
+  gap: 18px;
+}
+.result-detail-item {
+  background: #fff;
+  border: 1px solid #d8e2e6;
+  border-left: 5px solid var(--brand);
+  padding: 18px;
+}
+.result-detail-question-title {
+  color: #285468;
+  font-size: 18px;
+  margin: 0 0 14px;
+}
+.result-detail-grid {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+.result-detail-grid div {
+  display: grid;
+  gap: 6px;
+}
+.result-detail-grid dt {
+  color: #285468;
+  font-size: 13px;
+  font-weight: 700;
+}
+.result-detail-grid dd {
+  line-height: 1.65;
+  margin: 0;
+}
+.result-detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
 }
 .correct { color: #087d46; font-weight: 700; }
 .incorrect { color: var(--danger); font-weight: 700; }
