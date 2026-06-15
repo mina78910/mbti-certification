@@ -39,35 +39,18 @@
         <div class="section-heading">
           <p class="eyebrow">Online Exam Application</p>
           <h2 id="application-title">試験のお申込</h2>
-          <p>受験者情報と希望日時を入力してください。入力後、同じ画面からデモ試験を開始できます。</p>
+          <p>下記の注意事項をご確認のうえ、準備ができたら試験を開始してください。</p>
         </div>
         <form id="application-form" class="application-form">
-          <label>
-            <span>氏名</span>
-            <input type="text" name="name" placeholder="山田 太郎" required />
-          </label>
-          <label>
-            <span>メールアドレス</span>
-            <input type="email" name="email" placeholder="name@example.com" required />
-          </label>
-          <label>
-            <span>受験区分</span>
-            <select name="course" required>
-              <option value="">選択してください</option>
-              <option>MBTI基礎認定</option>
-              <option>MBTIタイプ理解確認</option>
-              <option>認定更新試験</option>
-            </select>
-          </label>
-          <label>
-            <span>希望受験日</span>
-            <input type="date" name="date" required />
-          </label>
-          <label class="full-width">
-            <span>連絡事項</span>
-            <textarea name="message" rows="3" placeholder="配慮事項や請求書宛名などがあれば入力してください"></textarea>
-          </label>
-          <button class="primary-button" type="submit">お申し込み内容を確認して試験へ進む</button>
+          <div class="application-summary" aria-label="受験前の確認事項">
+            <h3>受験前の確認</h3>
+            <ul>
+              <li>試験中はブラウザを閉じず、安定した通信環境で受験してください。</li>
+              <li>最後の問題まで進むと「全問見直し」または「試験を終了する」を選択できます。</li>
+              <li>この画面で氏名・メール・受験区分・希望受験日・連絡事項の入力は不要です。</li>
+            </ul>
+          </div>
+          <button class="primary-button" type="submit">試験を開始する</button>
         </form>
       </section>
 
