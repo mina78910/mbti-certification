@@ -198,7 +198,7 @@ function renderReviewPage() {
     const selectedAnswers = answers[question.id] || [];
     const answerText = selectedAnswers.length > 0
       ? selectedAnswers
-        .map((answerId) => question.options.find(({ id }) => id === answerId)?.displayLabel || answerId)
+        .map((answerId) => getOptionByAnswerId(question, answerId)?.displayLabel || answerId)
         .join(', ')
       : '未回答';
     const questionNumber = index + 1;
@@ -233,12 +233,18 @@ function isCorrect(question) {
   return selected.length === correct.length && selected.every((answer, index) => answer === correct[index]);
 }
 
+function getOptionByAnswerId(question, answerId) {
+  return question.options.find(({ id }) => id === answerId);
+}
+
+function formatOptionAnswerText(question, answerId) {
+  const option = getOptionByAnswerId(question, answerId);
+  return option ? `${option.displayLabel}. ${option.text}` : answerId;
+}
+
 function getCorrectAnswerText(question) {
   return question.correctAnswers
-    .map((answerId) => {
-      const option = question.options.find(({ id }) => id === answerId);
-      return option ? `${option.displayLabel}. ${option.text}` : answerId;
-    })
+    .map((answerId) => formatOptionAnswerText(question, answerId))
     .join(' / ');
 }
 
@@ -249,10 +255,7 @@ function getSelectedAnswerText(question) {
   }
 
   return selectedAnswers
-    .map((answerId) => {
-      const option = question.options.find(({ id }) => id === answerId);
-      return option ? `${option.displayLabel}. ${option.text}` : answerId;
-    })
+    .map((answerId) => formatOptionAnswerText(question, answerId))
     .join(' / ');
 }
 
