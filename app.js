@@ -3,6 +3,7 @@ const examCard = document.querySelector('#exam');
 const reviewCard = document.querySelector('#review');
 const resultPage = document.querySelector('#results');
 const questionPanel = document.querySelector('#question-panel');
+const answerPanel = document.querySelector('#answer-panel');
 const currentNumber = document.querySelector('#current-number');
 const totalNumber = document.querySelector('#total-number');
 const progressBar = document.querySelector('#progress-bar');
@@ -138,17 +139,18 @@ function renderQuestion() {
       <input id="mark-for-review" type="checkbox" ${isMarked ? 'checked' : ''} />
       <span>Mark this item for later review.</span>
     </label>
-    <section class="answer-explanation" aria-label="回答と解説">
-      <button class="answer-toggle-button secondary-button" type="button" aria-expanded="${isExplanationRevealed}" aria-controls="answer-explanation-content">
-        回答・解説を表示する
-      </button>
-      <div id="answer-explanation-content" class="answer-explanation-content ${isExplanationRevealed ? '' : 'is-hidden'}">
-        <p class="answer-heading">正解</p>
-        <p class="answer-correct">${getCorrectAnswerText(question)}</p>
-        <p class="answer-heading">解説</p>
-        <p class="answer-copy">${question.explanation}</p>
-      </div>
-    </section>
+  `;
+
+  answerPanel.innerHTML = `
+    <button class="answer-toggle-button secondary-button" type="button" aria-expanded="${isExplanationRevealed}" aria-controls="answer-explanation-content">
+      回答・解説を表示する
+    </button>
+    <div id="answer-explanation-content" class="answer-explanation-content ${isExplanationRevealed ? '' : 'is-hidden'}">
+      <p class="answer-heading">正解</p>
+      <p class="answer-correct">${getCorrectAnswerText(question)}</p>
+      <p class="answer-heading">解説</p>
+      <p class="answer-copy">${question.explanation}</p>
+    </div>
   `;
 }
 
@@ -292,7 +294,7 @@ prevButton.addEventListener('click', () => {
   renderQuestion();
 });
 
-questionPanel.addEventListener('click', (event) => {
+answerPanel.addEventListener('click', (event) => {
   const button = event.target.closest('.answer-toggle-button');
   if (!button) return;
   saveCurrentAnswer();
@@ -348,4 +350,5 @@ timerToggle.addEventListener('click', () => {
 
 loadQuestions().catch((error) => {
   questionPanel.innerHTML = `<p class="incorrect">${error.message}</p>`;
+  answerPanel.innerHTML = '';
 });

@@ -178,7 +178,7 @@ body.exam-mode .exam-card { display: flex; }
 .review-later input { width: auto; }
 
 .answer-explanation {
-  margin-top: 88px;
+  margin: 180px 0 40px;
   max-width: 760px;
 }
 .answer-toggle-button {
