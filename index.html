@@ -15,6 +15,7 @@
       <nav class="top-nav" aria-label="メインナビゲーション">
         <a href="#notice">領収書</a>
         <a href="#application" class="active">試験のお申込</a>
+        <a href="#results">試験結果</a>
         <a href="#exam">受験スケジュール／履歴</a>
         <a href="#home">ホーム</a>
       </nav>
@@ -101,7 +102,38 @@
         </div>
       </section>
 
-      <section id="result" class="card result-card is-hidden"></section>
+      <section id="results" class="result-page is-hidden" aria-live="polite" aria-labelledby="result-title">
+        <h2 id="result-title" class="visually-hidden">試験結果</h2>
+        <button id="result-back-button" class="result-back-button" type="button">戻る</button>
+        <dl class="result-meta">
+          <div>
+            <dt>試験:</dt>
+            <dd id="result-exam-name">MBTI 認定 Web試験</dd>
+          </div>
+          <div>
+            <dt>完了日:</dt>
+            <dd id="result-completed-date">--</dd>
+          </div>
+          <div>
+            <dt>所要時間:</dt>
+            <dd id="result-duration">--</dd>
+          </div>
+          <div>
+            <dt>結果:</dt>
+            <dd id="result-status">--</dd>
+          </div>
+        </dl>
+
+        <div class="result-score-table" role="table" aria-label="トピック別の正答率">
+          <div class="result-score-header" role="row">
+            <div role="columnheader">トピック</div>
+            <div role="columnheader">正答率</div>
+          </div>
+          <div id="result-score-body" class="result-score-body"></div>
+        </div>
+
+        <p id="result-message" class="result-message"></p>
+      </section>
     </main>
 
     <dialog id="submit-modal" class="submit-modal" aria-labelledby="submit-modal-title">
