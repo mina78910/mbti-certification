@@ -242,10 +242,20 @@ function formatOptionAnswerText(question, answerId) {
   return option ? `${option.displayLabel}. ${option.text}` : answerId;
 }
 
+function getAnswerDisplayLabel(question, answerId) {
+  return getOptionByAnswerId(question, answerId)?.displayLabel || answerId;
+}
+
+function sortAnswerIdsByDisplayLabel(question, answerIds) {
+  return [...answerIds].sort((firstAnswerId, secondAnswerId) => (
+    getAnswerDisplayLabel(question, firstAnswerId).localeCompare(getAnswerDisplayLabel(question, secondAnswerId), 'ja')
+  ));
+}
+
 function getCorrectAnswerText(question) {
-  return question.correctAnswers
+  return sortAnswerIdsByDisplayLabel(question, question.correctAnswers)
     .map((answerId) => formatOptionAnswerText(question, answerId))
-    .join(' / ');
+    .join('<br><br>');
 }
 
 function getSelectedAnswerText(question) {
