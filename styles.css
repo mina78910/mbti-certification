@@ -131,21 +131,27 @@ button {
 .application-form .primary-button { justify-self: start; }
 
 body.exam-mode,
+body.review-mode,
 body.result-mode { background: #fff; }
 body.exam-mode .site-header,
 body.exam-mode #notice,
-body.exam-mode #application { display: none; }
+body.exam-mode #application,
+body.exam-mode #review { display: none; }
+body.review-mode .site-header,
+body.review-mode #notice,
+body.review-mode #application,
+body.review-mode #exam,
+body.review-mode #results { display: none; }
 body.result-mode .site-header,
 body.result-mode #notice,
 body.result-mode #application,
 body.result-mode #exam,
 body.result-mode #review { display: none; }
 body.exam-mode .page-shell { padding: 24px 18px 22px; min-height: 100vh; }
+body.review-mode .page-shell { padding: 38px 18px 60px; min-height: 100vh; }
 body.result-mode .page-shell { padding: 0 15px 32px; min-height: 100vh; }
-body.exam-mode .exam-card,
-body.exam-mode .review-card { display: flex; }
-.exam-card,
-.review-card {
+body.exam-mode .exam-card { display: flex; }
+.exam-card {
   max-width: none;
   min-height: calc(100vh - 46px);
   margin: 0;
@@ -177,7 +183,29 @@ body.exam-mode .review-card { display: flex; }
 .secondary-button:hover, .primary-button:hover, .danger-button:hover { background: #007fa8; }
 button:disabled { opacity: .45; cursor: not-allowed; }
 .finish-actions { margin-top: 0; padding-top: 0; border-top: 0; }
-.review-card { color: #1f2023; }
+.review-card {
+  color: #1f2023;
+  max-width: 1100px;
+  min-height: 0;
+  padding: 24px;
+}
+body.review-mode .review-card { display: block; }
+.review-card .exam-topline {
+  border-bottom: 1px solid #d8e2e6;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 18px;
+}
+.review-card .exam-title {
+  color: #35454d;
+  font-size: 22px;
+  text-align: left;
+}
+.review-card .timer-panel {
+  color: #1f2023;
+  font-size: 15px;
+  padding-top: 0;
+}
 .review-summary { margin: 44px 0 18px; font-weight: 700; }
 .review-table-wrap { overflow-x: auto; }
 .review-table { width: 100%; border-collapse: collapse; color: #1f2023; }

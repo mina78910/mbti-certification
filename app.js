@@ -98,6 +98,8 @@ function stopTimer() {
 
 function showExamPage(index = currentIndex) {
   currentIndex = Math.min(Math.max(index, 0), questions.length - 1);
+  document.body.classList.add('exam-mode');
+  document.body.classList.remove('review-mode', 'result-mode');
   reviewCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
   examCard.classList.remove('is-hidden');
@@ -158,6 +160,8 @@ function renderReviewPage() {
 function showReviewPage() {
   saveCurrentAnswer();
   renderReviewPage();
+  document.body.classList.add('review-mode');
+  document.body.classList.remove('exam-mode', 'result-mode');
   examCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
   reviewCard.classList.remove('is-hidden');
@@ -217,7 +221,7 @@ function finishExam() {
     ? 'おめでとうございます！このたびは、認定試験に見事合格され、MBTI 認定 Web試験に認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
     : '今回は合格基準に届きませんでした。トピック別の正答率を確認し、復習のうえ再受験をご検討ください。';
   stopTimer();
-  document.body.classList.remove('exam-mode');
+  document.body.classList.remove('exam-mode', 'review-mode');
   document.body.classList.add('result-mode');
   examCard.classList.add('is-hidden');
   reviewCard.classList.add('is-hidden');
@@ -247,7 +251,7 @@ form.addEventListener('submit', async (event) => {
     await loadQuestions();
   }
   document.body.classList.add('exam-mode');
-  document.body.classList.remove('result-mode');
+  document.body.classList.remove('review-mode', 'result-mode');
   examCard.classList.remove('is-hidden');
   reviewCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
@@ -292,7 +296,7 @@ modalConfirmButton.addEventListener('click', () => {
 });
 
 resultBackButton.addEventListener('click', () => {
-  document.body.classList.remove('result-mode');
+  document.body.classList.remove('review-mode', 'result-mode');
   resultPage.classList.add('is-hidden');
   document.querySelector('#application').scrollIntoView({ behavior: 'smooth' });
 });
