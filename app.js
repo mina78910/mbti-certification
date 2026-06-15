@@ -140,7 +140,7 @@ function renderQuestion() {
   progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
   prevButton.disabled = currentIndex === 0;
   nextButton.textContent = '次へ >';
-  finishActions.classList.toggle('is-hidden', currentIndex !== questions.length - 1);
+  finishActions.classList.remove('is-hidden');
 
   questionPanel.innerHTML = `
     <div class="question-stem">
