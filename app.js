@@ -1,7 +1,7 @@
 const form = document.querySelector('#application-form');
 const examCard = document.querySelector('#exam');
 const reviewCard = document.querySelector('#review');
-const resultCard = document.querySelector('#result');
+const resultPage = document.querySelector('#results');
 const questionPanel = document.querySelector('#question-panel');
 const currentNumber = document.querySelector('#current-number');
 const totalNumber = document.querySelector('#total-number');
@@ -20,6 +20,12 @@ const reviewSubmitButton = document.querySelector('#review-submit-button');
 const submitModal = document.querySelector('#submit-modal');
 const modalCancelButton = document.querySelector('#modal-cancel-button');
 const modalConfirmButton = document.querySelector('#modal-confirm-button');
+const resultBackButton = document.querySelector('#result-back-button');
+const resultCompletedDate = document.querySelector('#result-completed-date');
+const resultDuration = document.querySelector('#result-duration');
+const resultStatus = document.querySelector('#result-status');
+const resultScoreBody = document.querySelector('#result-score-body');
+const resultMessage = document.querySelector('#result-message');
 
 let questions = [];
 let currentIndex = 0;
@@ -28,6 +34,15 @@ let markedQuestions = {};
 let remainingSeconds = 90 * 60;
 let timerId = null;
 let isTimerHidden = false;
+const examDurationSeconds = 90 * 60;
+const resultTopics = [
+  '外向的直観（Ne）',
+  '内向的感覚（Si）',
+  '外向的思考（Te）',
+  '内向的感情（Fi）',
+  '外向的感情（Fe）',
+  '内向的思考（Ti）',
+];
 
 async function loadQuestions() {
   const response = await fetch('./questions.json');
@@ -84,7 +99,7 @@ function stopTimer() {
 function showExamPage(index = currentIndex) {
   currentIndex = Math.min(Math.max(index, 0), questions.length - 1);
   reviewCard.classList.add('is-hidden');
-  resultCard.classList.add('is-hidden');
+  resultPage.classList.add('is-hidden');
   examCard.classList.remove('is-hidden');
   renderQuestion();
   examCard.scrollIntoView({ behavior: 'smooth' });
@@ -144,7 +159,7 @@ function showReviewPage() {
   saveCurrentAnswer();
   renderReviewPage();
   examCard.classList.add('is-hidden');
-  resultCard.classList.add('is-hidden');
+  resultPage.classList.add('is-hidden');
   reviewCard.classList.remove('is-hidden');
   reviewCard.scrollIntoView({ behavior: 'smooth' });
 }
@@ -155,27 +170,59 @@ function isCorrect(question) {
   return selected.length === correct.length && selected.every((answer, index) => answer === correct[index]);
 }
 
+function formatJapaneseDate(date) {
+  return new Intl.DateTimeFormat('ja-JP', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  }).format(date);
+}
+
+function formatDuration(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remaining = seconds % 60;
+  return `合計 90 分中 ${minutes} 分${remaining > 0 ? ` ${remaining} 秒` : ''}`;
+}
+
+function getTopicScores() {
+  return resultTopics.map((topic, index) => {
+    const topicQuestions = questions.filter((_, questionIndex) => questionIndex % resultTopics.length === index);
+    if (topicQuestions.length === 0) {
+      return { topic, percentage: 0 };
+    }
+    const correctCount = topicQuestions.filter(isCorrect).length;
+    return {
+      topic,
+      percentage: Math.round((correctCount / topicQuestions.length) * 100),
+    };
+  });
+}
+
 function finishExam() {
   saveCurrentAnswer();
   const correctCount = questions.filter(isCorrect).length;
-  resultCard.innerHTML = `
-    <h2>試験結果</h2>
-    <p>${questions.length}問中 ${correctCount}問正解です。お疲れさまでした。</p>
-    ${questions.map((question) => `
-      <div class="result-item">
-        <p><strong>${question.id}</strong> ${question.question}</p>
-        <p class="${isCorrect(question) ? 'correct' : 'incorrect'}">${isCorrect(question) ? '正解' : '不正解'}</p>
-        <p>あなたの回答: ${(answers[question.id] || []).join(', ') || '未回答'} / 正解: ${question.correctAnswers.join(', ')}</p>
-        <p>${question.explanation}</p>
-      </div>
-    `).join('')}
-  `;
+  const percentage = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 0;
+  const isPassed = percentage >= 70;
+  const elapsedSeconds = examDurationSeconds - remainingSeconds;
+  resultCompletedDate.textContent = formatJapaneseDate(new Date());
+  resultDuration.textContent = formatDuration(elapsedSeconds);
+  resultStatus.textContent = isPassed ? '合格' : '不合格';
+  resultScoreBody.innerHTML = getTopicScores().map(({ topic, percentage: topicPercentage }) => `
+    <div class="result-score-row" role="row">
+      <div role="cell">${topic}</div>
+      <div role="cell">${topicPercentage}%</div>
+    </div>
+  `).join('');
+  resultMessage.textContent = isPassed
+    ? 'おめでとうございます！このたびは、認定試験に見事合格され、MBTI 認定 Web試験に認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
+    : '今回は合格基準に届きませんでした。トピック別の正答率を確認し、復習のうえ再受験をご検討ください。';
   stopTimer();
   document.body.classList.remove('exam-mode');
+  document.body.classList.add('result-mode');
   examCard.classList.add('is-hidden');
   reviewCard.classList.add('is-hidden');
-  resultCard.classList.remove('is-hidden');
-  resultCard.scrollIntoView({ behavior: 'smooth' });
+  resultPage.classList.remove('is-hidden');
+  resultPage.scrollIntoView({ behavior: 'smooth' });
 }
 
 function openSubmitModal() {
@@ -200,9 +247,10 @@ form.addEventListener('submit', async (event) => {
     await loadQuestions();
   }
   document.body.classList.add('exam-mode');
+  document.body.classList.remove('result-mode');
   examCard.classList.remove('is-hidden');
   reviewCard.classList.add('is-hidden');
-  resultCard.classList.add('is-hidden');
+  resultPage.classList.add('is-hidden');
   currentIndex = 0;
   answers = {};
   markedQuestions = {};
@@ -241,6 +289,12 @@ modalCancelButton.addEventListener('click', closeSubmitModal);
 modalConfirmButton.addEventListener('click', () => {
   closeSubmitModal();
   finishExam();
+});
+
+resultBackButton.addEventListener('click', () => {
+  document.body.classList.remove('result-mode');
+  resultPage.classList.add('is-hidden');
+  document.querySelector('#application').scrollIntoView({ behavior: 'smooth' });
 });
 
 submitModal.addEventListener('click', (event) => {
