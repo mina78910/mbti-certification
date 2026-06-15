@@ -113,7 +113,7 @@ function renderQuestion() {
   currentNumber.textContent = currentIndex + 1;
   progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
   prevButton.disabled = currentIndex === 0;
-  nextButton.textContent = 'Next >';
+  nextButton.textContent = '次へ >';
   finishActions.classList.toggle('is-hidden', currentIndex !== questions.length - 1);
 
   questionPanel.innerHTML = `
@@ -305,7 +305,7 @@ submitModal.addEventListener('click', (event) => {
 
 timerToggle.addEventListener('click', () => {
   isTimerHidden = !isTimerHidden;
-  timerToggle.textContent = isTimerHidden ? 'Show' : 'Hide';
+  timerToggle.textContent = isTimerHidden ? '表示' : '非表示';
   timerToggle.setAttribute('aria-pressed', String(isTimerHidden));
   updateTimerDisplay();
 });

@@ -59,25 +59,27 @@
         <div class="exam-topline">
           <h1 id="exam-title" class="exam-title">MBTI Certification Exam</h1>
           <div class="timer-panel" aria-live="polite">
-            Time Remaining: <span id="timer-display">01:30:00</span><button id="timer-toggle" class="timer-toggle" type="button" aria-pressed="false">Hide</button>
+            Time Remaining: <span id="timer-display">01:30:00</span><button id="timer-toggle" class="timer-toggle" type="button" aria-pressed="false">非表示</button>
           </div>
           <div class="progress-badge"><span id="current-number">1</span>/<span id="total-number">0</span></div>
         </div>
         <div class="progress-track"><div id="progress-bar"></div></div>
         <article id="question-panel" class="question-panel"></article>
-        <div class="exam-actions">
-          <button id="prev-button" class="secondary-button" type="button">&lt; Back</button>
-          <button id="next-button" class="primary-button" type="button">Next &gt;</button>
-        </div>
-        <div id="finish-actions" class="finish-actions is-hidden">
-          <button id="review-button" class="secondary-button" type="button">Review All</button>
-          <button id="finish-button" class="danger-button" type="button">Submit Exam</button>
+        <div class="question-action-row">
+          <div class="exam-actions">
+            <button id="prev-button" class="secondary-button" type="button">&lt; 戻る</button>
+            <button id="next-button" class="primary-button" type="button">次へ &gt;</button>
+          </div>
+          <div id="finish-actions" class="finish-actions is-hidden">
+            <button id="review-button" class="secondary-button" type="button">全問見直し</button>
+            <button id="finish-button" class="danger-button" type="button">試験を提出</button>
+          </div>
         </div>
       </section>
 
       <section id="review" class="card review-card is-hidden" aria-live="polite" aria-labelledby="review-title">
         <div class="exam-topline">
-          <h1 id="review-title" class="exam-title">Review All</h1>
+          <h1 id="review-title" class="exam-title">全問見直し</h1>
           <div class="timer-panel" aria-live="polite">
             Time Remaining: <span id="timer-display-review">01:30:00</span>
           </div>
@@ -97,8 +99,8 @@
           </table>
         </div>
         <div class="review-actions">
-          <button id="review-back-button" class="secondary-button" type="button">Back to Exam</button>
-          <button id="review-submit-button" class="danger-button" type="button">Submit Exam</button>
+          <button id="review-back-button" class="secondary-button" type="button">試験に戻る</button>
+          <button id="review-submit-button" class="danger-button" type="button">試験を提出</button>
         </div>
       </section>
 
@@ -138,11 +140,11 @@
 
     <dialog id="submit-modal" class="submit-modal" aria-labelledby="submit-modal-title">
       <div class="submit-modal-content">
-        <h2 id="submit-modal-title">Submit Exam</h2>
+        <h2 id="submit-modal-title">試験を提出</h2>
         <p>試験を提出すると回答を変更できません。試験結果ページへ進みますか？</p>
         <div class="submit-modal-actions">
-          <button id="modal-cancel-button" class="secondary-button" type="button">Cancel</button>
-          <button id="modal-confirm-button" class="danger-button" type="button">Submit Exam</button>
+          <button id="modal-cancel-button" class="secondary-button" type="button">キャンセル</button>
+          <button id="modal-confirm-button" class="danger-button" type="button">試験を提出</button>
         </div>
       </div>
     </dialog>
