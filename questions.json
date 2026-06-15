@@ -1,28 +1,339 @@
-[
-  {
-    "id": "Q001",
-    "type": "single",
-    "question": "外向的直観（Ne）の説明として最も適切なものは？",
-    "options": [
-      { "id": "A", "text": "過去の経験をもとに安定した方法を選ぶ" },
-      { "id": "B", "text": "一つの事実から複数の可能性を広げる" },
-      { "id": "C", "text": "周囲の感情や調和を重視する" },
-      { "id": "D", "text": "客観的な効率や成果を重視する" }
-    ],
-    "correctAnswers": ["B"],
-    "explanation": "Neは、外部の情報から複数の可能性や関連性を見つける機能です。"
+{
+  "exam": {
+    "id": "mbti-basic-certification-001",
+    "title": "MBTI基礎認定試験",
+    "description": "MBTIの基本概念・4つの指標・心理機能・実践知識を確認する試験です。",
+    "passingScore": 80,
+    "timeLimitMinutes": 20,
+    "shuffleQuestions": true,
+    "shuffleOptions": true
   },
-  {
-    "id": "Q002",
-    "type": "multiple",
-    "question": "外向的思考（Te）の特徴として適切なものをすべて選んでください。",
-    "options": [
-      { "id": "A", "text": "作業を効率化する" },
-      { "id": "B", "text": "成果を客観的な指標で判断する" },
-      { "id": "C", "text": "自分の内面的な価値観を最優先する" },
-      { "id": "D", "text": "手順や役割を整理する" }
-    ],
-    "correctAnswers": ["A", "B", "D"],
-    "explanation": "Teは、外部世界を効率・成果・仕組みによって整理します。"
-  }
-]
+  "categories": [
+    "基本概念",
+    "4つの指標",
+    "心理機能",
+    "実践・その他"
+  ],
+  "questions": [
+    {
+      "id": "Q001",
+      "category": "基本概念",
+      "difficulty": 1,
+      "type": "single",
+      "question": "MBTIが主に示そうとしているものはどれですか？",
+      "options": [
+        { "id": "A", "text": "人間としての優劣" },
+        { "id": "B", "text": "心の使い方や物事の捉え方の傾向" },
+        { "id": "C", "text": "仕事の能力値" },
+        { "id": "D", "text": "精神的な成熟度" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "MBTIは、人間の優劣ではなく、情報の受け取り方や判断の傾向を理解するための枠組みです。",
+      "points": 5
+    },
+    {
+      "id": "Q002",
+      "category": "基本概念",
+      "difficulty": 1,
+      "type": "multiple",
+      "question": "MBTIを理解するうえで適切な考え方をすべて選んでください。",
+      "options": [
+        { "id": "A", "text": "タイプによって人間の価値は決まらない" },
+        { "id": "B", "text": "同じタイプでも性格や行動は異なる" },
+        { "id": "C", "text": "タイプが分かれば、その人の行動を完全に予測できる" },
+        { "id": "D", "text": "環境や経験によって実際の行動は変化する" }
+      ],
+      "correctAnswers": ["A", "B", "D"],
+      "explanation": "MBTIは傾向を示すものであり、個人の行動や能力を完全に決定するものではありません。",
+      "points": 5
+    },
+    {
+      "id": "Q003",
+      "category": "基本概念",
+      "difficulty": 1,
+      "type": "single",
+      "question": "MBTIのタイプが16種類になる理由として正しいものはどれですか？",
+      "options": [
+        { "id": "A", "text": "4つの指標に、それぞれ2つの方向があるため" },
+        { "id": "B", "text": "心理機能が16種類あるため" },
+        { "id": "C", "text": "人間の感情が16種類に分類できるため" },
+        { "id": "D", "text": "職業を16種類に分けているため" }
+      ],
+      "correctAnswers": ["A"],
+      "explanation": "4つの指標それぞれに2つの方向があり、2×2×2×2で16タイプになります。",
+      "points": 5
+    },
+    {
+      "id": "Q004",
+      "category": "基本概念",
+      "difficulty": 2,
+      "type": "single",
+      "question": "MBTIにおける「好み」に最も近い説明はどれですか？",
+      "options": [
+        { "id": "A", "text": "必ずその行動しかできないという制限" },
+        { "id": "B", "text": "自然に使いやすく、意識せず選びやすい方向" },
+        { "id": "C", "text": "努力して身につけた専門能力" },
+        { "id": "D", "text": "周囲から期待されている役割" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "MBTIの選好は、左右の手のように、どちらも使えるが自然に使いやすい側があるという考え方です。",
+      "points": 5
+    },
+    {
+      "id": "Q005",
+      "category": "基本概念",
+      "difficulty": 2,
+      "type": "single",
+      "question": "同じMBTIタイプの2人の行動が異なる主な理由として、最も適切なものはどれですか？",
+      "options": [
+        { "id": "A", "text": "どちらかが必ず診断を偽っているため" },
+        { "id": "B", "text": "経験・環境・価値観・能力などが異なるため" },
+        { "id": "C", "text": "MBTIタイプは毎日変化するため" },
+        { "id": "D", "text": "同じタイプの人は本来存在しないため" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "タイプが同じでも、育った環境、経験、能力、立場などによって表れる行動は異なります。",
+      "points": 5
+    },
+    {
+      "id": "Q006",
+      "category": "4つの指標",
+      "difficulty": 1,
+      "type": "single",
+      "question": "EとIの指標が主に表しているものはどれですか？",
+      "options": [
+        { "id": "A", "text": "社交性の高さだけ" },
+        { "id": "B", "text": "エネルギーや注意を向けやすい方向" },
+        { "id": "C", "text": "感情の強さ" },
+        { "id": "D", "text": "頭の良さ" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "EとIは、主に外の世界と内の世界のどちらに意識やエネルギーを向けやすいかを表します。",
+      "points": 5
+    },
+    {
+      "id": "Q007",
+      "category": "4つの指標",
+      "difficulty": 1,
+      "type": "single",
+      "question": "SとNの違いとして最も適切なものはどれですか？",
+      "options": [
+        { "id": "A", "text": "感情的か論理的か" },
+        { "id": "B", "text": "事実や具体性を重視するか、可能性や関連性を重視するか" },
+        { "id": "C", "text": "計画的か柔軟か" },
+        { "id": "D", "text": "社交的か一人好きか" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "Sは具体的な事実や経験を、Nはパターン、意味、可能性などを捉えやすい傾向です。",
+      "points": 5
+    },
+    {
+      "id": "Q008",
+      "category": "4つの指標",
+      "difficulty": 1,
+      "type": "multiple",
+      "question": "TとFに関する説明として適切なものをすべて選んでください。",
+      "options": [
+        { "id": "A", "text": "Tは原則や論理的整合性を重視しやすい" },
+        { "id": "B", "text": "Fは人や価値観への影響を重視しやすい" },
+        { "id": "C", "text": "T型には感情がない" },
+        { "id": "D", "text": "F型は論理的に考えられない" }
+      ],
+      "correctAnswers": ["A", "B"],
+      "explanation": "TとFは判断基準の違いです。感情や論理を持っているかどうかの違いではありません。",
+      "points": 5
+    },
+    {
+      "id": "Q009",
+      "category": "4つの指標",
+      "difficulty": 1,
+      "type": "single",
+      "question": "JとPの違いとして最も適切なものはどれですか？",
+      "options": [
+        { "id": "A", "text": "頭が良いか悪いか" },
+        { "id": "B", "text": "外の世界に対して、決定や計画を重視するか、柔軟性や探索を重視するか" },
+        { "id": "C", "text": "感情を表に出すか出さないか" },
+        { "id": "D", "text": "仕事ができるかできないか" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "Jは決定や区切りを好みやすく、Pは状況に応じて選択肢を残すことを好みやすい傾向です。",
+      "points": 5
+    },
+    {
+      "id": "Q010",
+      "category": "4つの指標",
+      "difficulty": 2,
+      "type": "multiple",
+      "question": "MBTIの4つの指標について正しいものをすべて選んでください。",
+      "options": [
+        { "id": "A", "text": "E型でも一人で過ごすことはある" },
+        { "id": "B", "text": "I型でも人前で話すことはできる" },
+        { "id": "C", "text": "J型は必ず整理整頓が得意である" },
+        { "id": "D", "text": "S型でも将来について想像できる" }
+      ],
+      "correctAnswers": ["A", "B", "D"],
+      "explanation": "各指標は行動の可否ではなく、自然に選びやすい傾向を示します。",
+      "points": 5
+    },
+    {
+      "id": "Q011",
+      "category": "心理機能",
+      "difficulty": 2,
+      "type": "single",
+      "question": "心理機能における「知覚機能」の組み合わせはどれですか？",
+      "options": [
+        { "id": "A", "text": "TとF" },
+        { "id": "B", "text": "SとN" },
+        { "id": "C", "text": "EとI" },
+        { "id": "D", "text": "JとP" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "SとNは情報をどのように受け取るかに関係する知覚機能です。",
+      "points": 5
+    },
+    {
+      "id": "Q012",
+      "category": "心理機能",
+      "difficulty": 2,
+      "type": "single",
+      "question": "心理機能における「判断機能」の組み合わせはどれですか？",
+      "options": [
+        { "id": "A", "text": "TとF" },
+        { "id": "B", "text": "SとN" },
+        { "id": "C", "text": "EとI" },
+        { "id": "D", "text": "JとP" }
+      ],
+      "correctAnswers": ["A"],
+      "explanation": "TとFは、受け取った情報をどのような基準で判断するかに関係します。",
+      "points": 5
+    },
+    {
+      "id": "Q013",
+      "category": "心理機能",
+      "difficulty": 2,
+      "type": "single",
+      "question": "外向的直観（Ne）の特徴として最も適切なものはどれですか？",
+      "options": [
+        { "id": "A", "text": "過去の経験と現在を細かく比較する" },
+        { "id": "B", "text": "一つの情報から複数の可能性を広げる" },
+        { "id": "C", "text": "集団の感情的な調和を整える" },
+        { "id": "D", "text": "客観的な手順や効率を整える" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "Neは、外部の物事から関連性や新しい可能性を次々と見つける働きです。",
+      "points": 5
+    },
+    {
+      "id": "Q014",
+      "category": "心理機能",
+      "difficulty": 2,
+      "type": "multiple",
+      "question": "外向的思考（Te）の特徴として適切なものをすべて選んでください。",
+      "options": [
+        { "id": "A", "text": "作業手順を整理する" },
+        { "id": "B", "text": "客観的な成果や効率を重視する" },
+        { "id": "C", "text": "自分だけの価値観を深く確認する" },
+        { "id": "D", "text": "目標達成のために人や物を配置する" }
+      ],
+      "correctAnswers": ["A", "B", "D"],
+      "explanation": "Teは、外部世界を効率、成果、基準、仕組みなどによって整理する働きです。",
+      "points": 5
+    },
+    {
+      "id": "Q015",
+      "category": "心理機能",
+      "difficulty": 3,
+      "type": "single",
+      "question": "内向的感情（Fi）の説明として最も適切なものはどれですか？",
+      "options": [
+        { "id": "A", "text": "集団全体の感情を調整する" },
+        { "id": "B", "text": "自分の内側にある価値観や誠実さを基準に判断する" },
+        { "id": "C", "text": "外部の事実を効率的に整理する" },
+        { "id": "D", "text": "過去の経験を正確に再現する" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "Fiは、自分自身の内的な価値観や、本当に納得できるかどうかを重視する判断機能です。",
+      "points": 5
+    },
+    {
+      "id": "Q016",
+      "category": "実践・その他",
+      "difficulty": 1,
+      "type": "single",
+      "question": "MBTIを職場で活用する方法として最も適切なものはどれですか？",
+      "options": [
+        { "id": "A", "text": "タイプだけで担当業務を決める" },
+        { "id": "B", "text": "相手が理解しやすい伝え方を考える参考にする" },
+        { "id": "C", "text": "苦手なタイプとの会話を避ける" },
+        { "id": "D", "text": "採用の合否をタイプだけで決める" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "MBTIは、コミュニケーションや相互理解を補助する参考情報として使うのが適切です。",
+      "points": 5
+    },
+    {
+      "id": "Q017",
+      "category": "実践・その他",
+      "difficulty": 2,
+      "type": "multiple",
+      "question": "タイプが分からない相手と接するときに有効な対応をすべて選んでください。",
+      "options": [
+        { "id": "A", "text": "具体例と全体像の両方を示す" },
+        { "id": "B", "text": "結論だけでなく、理由や相手への影響も説明する" },
+        { "id": "C", "text": "外見だけでタイプを断定する" },
+        { "id": "D", "text": "相手の反応を見ながら伝え方を調整する" }
+      ],
+      "correctAnswers": ["A", "B", "D"],
+      "explanation": "相手のタイプを決めつけず、複数の伝え方を用意して反応を確認する方法が有効です。",
+      "points": 5
+    },
+    {
+      "id": "Q018",
+      "category": "実践・その他",
+      "difficulty": 2,
+      "type": "single",
+      "question": "診断結果に違和感がある場合の対応として最も適切なものはどれですか？",
+      "options": [
+        { "id": "A", "text": "診断結果が絶対に正しいと考える" },
+        { "id": "B", "text": "設問への回答状況や普段の自然な傾向を改めて確認する" },
+        { "id": "C", "text": "一番能力が高そうなタイプを選ぶ" },
+        { "id": "D", "text": "周囲から好かれそうなタイプを選ぶ" }
+      ],
+      "correctAnswers": ["B"],
+      "explanation": "診断結果は参考情報です。理想の自分や仕事上の役割ではなく、自然な状態を振り返る必要があります。",
+      "points": 5
+    },
+    {
+      "id": "Q019",
+      "category": "実践・その他",
+      "difficulty": 2,
+      "type": "single",
+      "question": "「F型だから論理的な説明は苦手」と判断することの問題点はどれですか？",
+      "options": [
+        { "id": "A", "text": "タイプの傾向と能力を混同している" },
+        { "id": "B", "text": "F型は必ず論理的だから" },
+        { "id": "C", "text": "MBTIでは感情を扱わないから" },
+        { "id": "D", "text": "F型というタイプは存在しないから" }
+      ],
+      "correctAnswers": ["A"],
+      "explanation": "MBTIの指標は判断時に重視しやすい基準であり、能力の有無を直接表すものではありません。",
+      "points": 5
+    },
+    {
+      "id": "Q020",
+      "category": "実践・その他",
+      "difficulty": 3,
+      "type": "multiple",
+      "question": "MBTIを扱う際に避けるべき行動をすべて選んでください。",
+      "options": [
+        { "id": "A", "text": "タイプを理由に相手の能力を決めつける" },
+        { "id": "B", "text": "本人の話を聞かずにタイプを断定する" },
+        { "id": "C", "text": "違いを理解するための参考として使う" },
+        { "id": "D", "text": "特定のタイプを優秀・劣等と評価する" }
+      ],
+      "correctAnswers": ["A", "B", "D"],
+      "explanation": "MBTIは人を決めつけたり、序列化したりするためではなく、違いを理解するために使うものです。",
+      "points": 5
+    }
+  ]
+}

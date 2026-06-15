@@ -28,29 +28,52 @@ const resultStatus = document.querySelector('#result-status');
 const resultScoreBody = document.querySelector('#result-score-body');
 const resultMessage = document.querySelector('#result-message');
 
+let examConfig = {};
+let categories = [];
 let questions = [];
+let sourceQuestions = [];
 let currentIndex = 0;
 let answers = {};
 let markedQuestions = {};
 let revealedExplanations = {};
-let remainingSeconds = 90 * 60;
+let remainingSeconds = 20 * 60;
 let timerId = null;
 let isTimerHidden = false;
-const examDurationSeconds = 90 * 60;
-const resultTopics = [
-  '基本概念',
-  '4つの指標',
-  '心理機能',
-  '実践・その他',
-];
+let examDurationSeconds = 20 * 60;
+
+function shuffleItems(items) {
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+  return shuffled;
+}
+
+function prepareQuestions(rawQuestions) {
+  const preparedQuestions = rawQuestions.map((question) => ({
+    ...question,
+    options: examConfig.shuffleOptions ? shuffleItems(question.options) : [...question.options],
+  }));
+
+  return examConfig.shuffleQuestions ? shuffleItems(preparedQuestions) : preparedQuestions;
+}
 
 async function loadQuestions() {
   const response = await fetch('./questions.json');
   if (!response.ok) {
     throw new Error('問題データを読み込めませんでした。');
   }
-  questions = await response.json();
+  const examData = await response.json();
+  examConfig = examData.exam || {};
+  categories = examData.categories || [];
+  sourceQuestions = examData.questions || examData;
+  questions = prepareQuestions(sourceQuestions);
+  examDurationSeconds = (examConfig.timeLimitMinutes || 20) * 60;
+  remainingSeconds = examDurationSeconds;
   totalNumber.textContent = questions.length;
+  document.querySelector('#exam-title').textContent = examConfig.title || 'MBTI Certification Exam';
+  updateTimerDisplay();
 }
 
 function optionInputType(question) {
@@ -79,7 +102,7 @@ function updateTimerDisplay() {
 
 function startTimer() {
   clearInterval(timerId);
-  remainingSeconds = 90 * 60;
+  remainingSeconds = examDurationSeconds;
   updateTimerDisplay();
   timerId = setInterval(() => {
     remainingSeconds = Math.max(0, remainingSeconds - 1);
@@ -207,28 +230,36 @@ function formatJapaneseDate(date) {
 function formatDuration(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remaining = seconds % 60;
-  return `合計 90 分中 ${minutes} 分${remaining > 0 ? ` ${remaining} 秒` : ''}`;
+  const totalMinutes = Math.round(examDurationSeconds / 60);
+  return `合計 ${totalMinutes} 分中 ${minutes} 分${remaining > 0 ? ` ${remaining} 秒` : ''}`;
 }
 
 function getTopicScores() {
-  return resultTopics.map((topic, index) => {
-    const topicQuestions = questions.filter((_, questionIndex) => questionIndex % resultTopics.length === index);
+  return categories.map((topic) => {
+    const topicQuestions = questions.filter((question) => question.category === topic);
     if (topicQuestions.length === 0) {
       return { topic, percentage: 0 };
     }
-    const correctCount = topicQuestions.filter(isCorrect).length;
+    const totalPoints = topicQuestions.reduce((sum, question) => sum + (question.points || 1), 0);
+    const earnedPoints = topicQuestions
+      .filter(isCorrect)
+      .reduce((sum, question) => sum + (question.points || 1), 0);
     return {
       topic,
-      percentage: Math.round((correctCount / topicQuestions.length) * 100),
+      percentage: totalPoints > 0 ? Math.round((earnedPoints / totalPoints) * 100) : 0,
     };
   });
 }
 
 function finishExam() {
   saveCurrentAnswer();
-  const correctCount = questions.filter(isCorrect).length;
-  const passingScore = Math.ceil(questions.length * 0.6);
-  const isPassed = correctCount >= passingScore;
+  const totalPoints = questions.reduce((sum, question) => sum + (question.points || 1), 0);
+  const earnedPoints = questions
+    .filter(isCorrect)
+    .reduce((sum, question) => sum + (question.points || 1), 0);
+  const scorePercentage = totalPoints > 0 ? Math.round((earnedPoints / totalPoints) * 100) : 0;
+  const passingScore = examConfig.passingScore || 80;
+  const isPassed = scorePercentage >= passingScore;
   const elapsedSeconds = examDurationSeconds - remainingSeconds;
   resultCompletedDate.textContent = formatJapaneseDate(new Date());
   resultDuration.textContent = formatDuration(elapsedSeconds);
@@ -241,7 +272,7 @@ function finishExam() {
   `).join('');
   resultMessage.textContent = isPassed
     ? 'おめでとうございます！このたびは、認定試験に見事合格され、MBTI 認定 Web試験に認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
-    : '今回は合格基準（出題問題数の6割）に届きませんでした。カテゴリ別の正答率は参考値として確認し、復習のうえ再受験をご検討ください。';
+    : `今回は合格基準（${passingScore}%）に届きませんでした。カテゴリ別の正答率は参考値として確認し、復習のうえ再受験をご検討ください。`;
   stopTimer();
   document.body.classList.remove('exam-mode', 'review-mode');
   document.body.classList.add('result-mode');
@@ -277,6 +308,8 @@ form.addEventListener('submit', async (event) => {
   examCard.classList.remove('is-hidden');
   reviewCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
+  questions = prepareQuestions(sourceQuestions);
+  totalNumber.textContent = questions.length;
   currentIndex = 0;
   answers = {};
   markedQuestions = {};
