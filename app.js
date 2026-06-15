@@ -147,7 +147,6 @@ function renderQuestion() {
       <span class="question-meta">${currentIndex + 1} of ${questions.length}.</span>
       <p class="question-text"> ${question.question}</p>
     </div>
-    <p class="question-prompt">What is the best answer?</p>
     <div class="options">
       ${question.options.map((option) => `
         <label class="option-row">
@@ -158,7 +157,7 @@ function renderQuestion() {
     </div>
     <label class="review-later">
       <input id="mark-for-review" type="checkbox" ${isMarked ? 'checked' : ''} />
-      <span>Mark this item for later review.</span>
+      <span>この問題をマークしておき、後で見直す</span>
     </label>
   `;
 
