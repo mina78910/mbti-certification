@@ -85,7 +85,7 @@ body {
 .notice-panel h2 { margin-top: 18px; }
 .notice-panel p { margin: 0 0 9px; }
 .notice-panel a { color: #0999d4; font-weight: 700; }
-.chat-callout { border: 5px solid #e91521; display: inline-block; padding: 2px 14px; }
+.chat-callout { display: inline-block; padding: 2px 0; }
 
 .card {
   max-width: 1100px;
@@ -166,7 +166,7 @@ body.exam-mode .exam-card { display: flex; }
 .timer-panel { grid-column: 1; grid-row: 1; color: #1f2023; font-size: 17px; font-weight: 700; letter-spacing: .04em; padding-top: 42px; }
 .timer-toggle { background: #5d8790; border-radius: 999px; color: #fff; font-size: 11px; margin-left: 8px; padding: 5px 9px; vertical-align: 2px; }
 .progress-badge, .progress-track { display: none; }
-.question-panel { flex: 1; margin: 44px 0 22px; padding: 0; background: #fff; border: 0; color: #1f2023; }
+.question-panel { flex: 1; width: calc(100% - 96px); max-width: 1120px; margin: 44px auto 22px; padding: 0; background: #fff; border: 0; color: #1f2023; }
 .question-stem { line-height: 1.65; }
 .question-meta { display: inline; color: #1f2023; font-weight: 700; margin: 0; }
 .question-text { display: inline; font-size: 15px; font-weight: 700; line-height: 1.65; color: #1f2023; margin: 0; }
@@ -180,8 +180,9 @@ body.exam-mode .exam-card { display: flex; }
 .review-later input { width: auto; }
 
 .answer-explanation {
-  margin: 180px 0 40px;
+  width: calc(100% - 96px);
   max-width: 760px;
+  margin: 180px auto 40px;
 }
 .answer-toggle-button {
   border-radius: 3px;
@@ -209,7 +210,7 @@ body.exam-mode .exam-card { display: flex; }
 .answer-copy:last-child {
   margin-bottom: 0;
 }
-.question-action-row { display: flex; justify-content: flex-end; gap: 8px; align-items: center; margin-top: auto; }
+.question-action-row { display: flex; justify-content: flex-end; gap: 8px; align-items: center; width: calc(100% - 96px); max-width: 1120px; margin: auto auto 0; }
 .exam-actions, .finish-actions { display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
 .exam-actions button, .finish-actions button { border-radius: 0; font-size: 14px; min-width: 80px; padding: 10px 13px; }
 .secondary-button, .primary-button, .danger-button { background: #008fc5; color: #fff; border: 1px solid #58b7d6; }
@@ -343,6 +344,7 @@ body.review-mode .review-card { display: block; }
   .exam-topline { grid-template-columns: 1fr; }
   .exam-title, .timer-panel { grid-column: 1; }
   .timer-panel { grid-row: auto; padding-top: 16px; }
+  .question-panel, .answer-explanation, .question-action-row { width: 100%; }
   .question-action-row { flex-wrap: wrap; }
   .options { margin-top: clamp(40px, 7vh, 5.5rem); }
   .review-actions, .submit-modal-actions { align-items: stretch; flex-direction: column; }
