@@ -1,5 +1,6 @@
 const form = document.querySelector('#application-form');
 const examCard = document.querySelector('#exam');
+const reviewCard = document.querySelector('#review');
 const resultCard = document.querySelector('#result');
 const questionPanel = document.querySelector('#question-panel');
 const currentNumber = document.querySelector('#current-number');
@@ -11,11 +12,19 @@ const finishActions = document.querySelector('#finish-actions');
 const reviewButton = document.querySelector('#review-button');
 const finishButton = document.querySelector('#finish-button');
 const timerDisplay = document.querySelector('#timer-display');
+const reviewTimerDisplay = document.querySelector('#timer-display-review');
 const timerToggle = document.querySelector('#timer-toggle');
+const reviewTableBody = document.querySelector('#review-table-body');
+const reviewBackButton = document.querySelector('#review-back-button');
+const reviewSubmitButton = document.querySelector('#review-submit-button');
+const submitModal = document.querySelector('#submit-modal');
+const modalCancelButton = document.querySelector('#modal-cancel-button');
+const modalConfirmButton = document.querySelector('#modal-confirm-button');
 
 let questions = [];
 let currentIndex = 0;
 let answers = {};
+let markedQuestions = {};
 let remainingSeconds = 90 * 60;
 let timerId = null;
 let isTimerHidden = false;
@@ -38,6 +47,7 @@ function saveCurrentAnswer() {
   if (!question) return;
   const checked = [...questionPanel.querySelectorAll(`input[name="${question.id}"]:checked`)].map((input) => input.value);
   answers[question.id] = checked;
+  markedQuestions[question.id] = Boolean(questionPanel.querySelector('#mark-for-review')?.checked);
 }
 
 function formatTime(totalSeconds) {
@@ -49,6 +59,7 @@ function formatTime(totalSeconds) {
 
 function updateTimerDisplay() {
   timerDisplay.textContent = isTimerHidden ? '--:--:--' : formatTime(remainingSeconds);
+  reviewTimerDisplay.textContent = timerDisplay.textContent;
 }
 
 function startTimer() {
@@ -70,9 +81,19 @@ function stopTimer() {
   timerId = null;
 }
 
+function showExamPage(index = currentIndex) {
+  currentIndex = Math.min(Math.max(index, 0), questions.length - 1);
+  reviewCard.classList.add('is-hidden');
+  resultCard.classList.add('is-hidden');
+  examCard.classList.remove('is-hidden');
+  renderQuestion();
+  examCard.scrollIntoView({ behavior: 'smooth' });
+}
+
 function renderQuestion() {
   const question = questions[currentIndex];
   const selectedAnswers = answers[question.id] || [];
+  const isMarked = Boolean(markedQuestions[question.id]);
   const inputType = optionInputType(question);
   currentNumber.textContent = currentIndex + 1;
   progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
@@ -95,10 +116,37 @@ function renderQuestion() {
       `).join('')}
     </div>
     <label class="review-later">
-      <input type="checkbox" />
+      <input id="mark-for-review" type="checkbox" ${isMarked ? 'checked' : ''} />
       <span>Mark this item for later review.</span>
     </label>
   `;
+}
+
+function renderReviewPage() {
+  reviewTableBody.innerHTML = questions.map((question, index) => {
+    const selectedAnswers = answers[question.id] || [];
+    const answerText = selectedAnswers.length > 0 ? selectedAnswers.join(', ') : '未回答';
+    const questionNumber = index + 1;
+    const numberContent = markedQuestions[question.id]
+      ? `<a href="#exam" data-question-index="${index}">No.${questionNumber}</a>`
+      : `No.${questionNumber}`;
+
+    return `
+      <tr>
+        <td>${numberContent}</td>
+        <td>${answerText}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function showReviewPage() {
+  saveCurrentAnswer();
+  renderReviewPage();
+  examCard.classList.add('is-hidden');
+  resultCard.classList.add('is-hidden');
+  reviewCard.classList.remove('is-hidden');
+  reviewCard.scrollIntoView({ behavior: 'smooth' });
 }
 
 function isCorrect(question) {
@@ -125,8 +173,25 @@ function finishExam() {
   stopTimer();
   document.body.classList.remove('exam-mode');
   examCard.classList.add('is-hidden');
+  reviewCard.classList.add('is-hidden');
   resultCard.classList.remove('is-hidden');
   resultCard.scrollIntoView({ behavior: 'smooth' });
+}
+
+function openSubmitModal() {
+  if (typeof submitModal.showModal === 'function') {
+    submitModal.showModal();
+    return;
+  }
+  submitModal.setAttribute('open', '');
+}
+
+function closeSubmitModal() {
+  if (typeof submitModal.close === 'function') {
+    submitModal.close();
+    return;
+  }
+  submitModal.removeAttribute('open');
 }
 
 form.addEventListener('submit', async (event) => {
@@ -136,9 +201,11 @@ form.addEventListener('submit', async (event) => {
   }
   document.body.classList.add('exam-mode');
   examCard.classList.remove('is-hidden');
+  reviewCard.classList.add('is-hidden');
   resultCard.classList.add('is-hidden');
   currentIndex = 0;
   answers = {};
+  markedQuestions = {};
   renderQuestion();
   startTimer();
   examCard.scrollIntoView({ behavior: 'smooth' });
@@ -158,13 +225,29 @@ nextButton.addEventListener('click', () => {
   }
 });
 
-reviewButton.addEventListener('click', () => {
-  saveCurrentAnswer();
-  currentIndex = 0;
-  renderQuestion();
+reviewButton.addEventListener('click', showReviewPage);
+finishButton.addEventListener('click', openSubmitModal);
+
+reviewTableBody.addEventListener('click', (event) => {
+  const link = event.target.closest('[data-question-index]');
+  if (!link) return;
+  event.preventDefault();
+  showExamPage(Number(link.dataset.questionIndex));
 });
 
-finishButton.addEventListener('click', finishExam);
+reviewBackButton.addEventListener('click', () => showExamPage(currentIndex));
+reviewSubmitButton.addEventListener('click', openSubmitModal);
+modalCancelButton.addEventListener('click', closeSubmitModal);
+modalConfirmButton.addEventListener('click', () => {
+  closeSubmitModal();
+  finishExam();
+});
+
+submitModal.addEventListener('click', (event) => {
+  if (event.target === submitModal) {
+    closeSubmitModal();
+  }
+});
 
 timerToggle.addEventListener('click', () => {
   isTimerHidden = !isTimerHidden;

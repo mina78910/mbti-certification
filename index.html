@@ -74,8 +74,46 @@
         </div>
       </section>
 
+      <section id="review" class="card review-card is-hidden" aria-live="polite" aria-labelledby="review-title">
+        <div class="exam-topline">
+          <h1 id="review-title" class="exam-title">Review All</h1>
+          <div class="timer-panel" aria-live="polite">
+            Time Remaining: <span id="timer-display-review">01:30:00</span>
+          </div>
+        </div>
+        <div class="review-summary">
+          <p>回答状況を確認してください。マークした問題は No. のリンクから該当問題へ戻れます。</p>
+        </div>
+        <div class="review-table-wrap">
+          <table class="review-table">
+            <thead>
+              <tr>
+                <th scope="col">問題 No</th>
+                <th scope="col">回答状況</th>
+              </tr>
+            </thead>
+            <tbody id="review-table-body"></tbody>
+          </table>
+        </div>
+        <div class="review-actions">
+          <button id="review-back-button" class="secondary-button" type="button">Back to Exam</button>
+          <button id="review-submit-button" class="danger-button" type="button">Submit Exam</button>
+        </div>
+      </section>
+
       <section id="result" class="card result-card is-hidden"></section>
     </main>
+
+    <dialog id="submit-modal" class="submit-modal" aria-labelledby="submit-modal-title">
+      <div class="submit-modal-content">
+        <h2 id="submit-modal-title">Submit Exam</h2>
+        <p>試験を提出すると回答を変更できません。試験結果ページへ進みますか？</p>
+        <div class="submit-modal-actions">
+          <button id="modal-cancel-button" class="secondary-button" type="button">Cancel</button>
+          <button id="modal-confirm-button" class="danger-button" type="button">Submit Exam</button>
+        </div>
+      </div>
+    </dialog>
 
     <script type="module" src="app.js"></script>
   </body>
