@@ -143,9 +143,9 @@ function renderQuestion() {
   finishActions.classList.toggle('is-hidden', currentIndex !== questions.length - 1);
 
   questionPanel.innerHTML = `
-    <div>
+    <div class="question-stem">
       <span class="question-meta">${currentIndex + 1} of ${questions.length}.</span>
-      <p class="question-text"> ${question.question}</p>
+      <span class="question-text"> ${question.question}</span>
     </div>
     <div class="options">
       ${question.options.map((option) => `

@@ -167,9 +167,11 @@ body.exam-mode .exam-card { display: flex; }
 .timer-toggle { background: #5d8790; border-radius: 999px; color: #fff; font-size: 11px; margin-left: 8px; padding: 5px 9px; vertical-align: 2px; }
 .progress-badge, .progress-track { display: none; }
 .question-panel { flex: 1; margin: 44px 0 22px; padding: 0; background: #fff; border: 0; color: #1f2023; }
+.question-stem { line-height: 1.65; }
 .question-meta { display: inline; color: #1f2023; font-weight: 700; margin: 0; }
 .question-text { display: inline; font-size: 15px; font-weight: 700; line-height: 1.65; color: #1f2023; margin: 0; }
 .question-prompt { margin: 22px 0 54px; color: #1f2023; font-weight: 700; line-height: 1.65; }
+.options { margin-top: clamp(56px, 9vh, 7.75rem); }
 .option-row { display: flex; gap: 8px; align-items: flex-start; width: fit-content; padding: 0; background: transparent; border: 0; margin-top: 6px; border-radius: 0; color: #1f2023; font-size: 13px; line-height: 1.35; }
 .option-row:hover { color: #000; }
 .option-row input { flex: 0 0 auto; width: auto; margin: 1px 0 0; }
@@ -342,6 +344,7 @@ body.review-mode .review-card { display: block; }
   .exam-title, .timer-panel { grid-column: 1; }
   .timer-panel { grid-row: auto; padding-top: 16px; }
   .question-action-row { flex-wrap: wrap; }
+  .options { margin-top: clamp(40px, 7vh, 5.5rem); }
   .review-actions, .submit-modal-actions { align-items: stretch; flex-direction: column; }
   .result-page { font-size: 16px; padding-bottom: 70px; }
   .result-back-button { bottom: 4px; right: 0; }
@@ -350,4 +353,8 @@ body.review-mode .review-card { display: block; }
   .result-score-header,
   .result-score-row { grid-template-columns: minmax(0, 1fr) 88px; }
   .result-message { font-size: 15px; }
+}
+
+@media (max-height: 640px) {
+  .options { margin-top: 44px; }
 }
