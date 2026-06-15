@@ -167,9 +167,15 @@ body.exam-mode .exam-card { display: flex; }
 .timer-toggle { background: #5d8790; border-radius: 999px; color: #fff; font-size: 11px; margin-left: 8px; padding: 5px 9px; vertical-align: 2px; }
 .progress-badge, .progress-track { display: none; }
 .question-panel { flex: 1; width: calc(100% - 96px); max-width: 1120px; margin: 44px auto 22px; padding: 0; background: #fff; border: 0; color: #1f2023; }
-.question-stem { line-height: 1.65; }
-.question-meta { display: inline; color: #1f2023; font-weight: 700; margin: 0; }
-.question-text { display: inline; font-size: 15px; font-weight: 700; line-height: 1.65; color: #1f2023; margin: 0; }
+.question-stem {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+  column-gap: .35em;
+  line-height: 1.65;
+}
+.question-meta { color: #1f2023; font-weight: 700; margin: 0; }
+.question-text { display: block; font-size: 15px; font-weight: 700; line-height: 1.65; color: #1f2023; margin: 0; }
 .question-prompt { margin: 22px 0 54px; color: #1f2023; font-weight: 700; line-height: 1.65; }
 .options { margin-top: clamp(56px, 9vh, 7.75rem); }
 .option-row { display: flex; gap: 8px; align-items: flex-start; width: fit-content; padding: 0; background: transparent; border: 0; margin-top: 6px; border-radius: 0; color: #1f2023; font-size: 13px; line-height: 1.35; }
@@ -182,7 +188,7 @@ body.exam-mode .exam-card { display: flex; }
 .answer-explanation {
   width: calc(100% - 96px);
   max-width: 760px;
-  margin: 180px auto 40px;
+  margin: max(55vh, 360px) auto 40px;
 }
 .answer-toggle-button {
   border-radius: 3px;
@@ -345,6 +351,7 @@ body.review-mode .review-card { display: block; }
   .exam-title, .timer-panel { grid-column: 1; }
   .timer-panel { grid-row: auto; padding-top: 16px; }
   .question-panel, .answer-explanation, .question-action-row { width: 100%; }
+  .question-stem { grid-template-columns: 1fr; row-gap: 2px; }
   .question-action-row { flex-wrap: wrap; }
   .options { margin-top: clamp(40px, 7vh, 5.5rem); }
   .review-actions, .submit-modal-actions { align-items: stretch; flex-direction: column; }
