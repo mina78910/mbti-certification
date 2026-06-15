@@ -161,7 +161,15 @@ body.exam-mode .exam-card { display: flex; }
   padding: 0;
   flex-direction: column;
 }
-.exam-topline { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 16px; }
+.exam-topline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 16px;
+  width: calc(100% - 96px);
+  max-width: 1120px;
+  margin: 0 auto;
+}
 .exam-title { grid-column: 2; color: #85bdc0; font-size: 20px; font-weight: 700; margin: 0; text-align: center; }
 .timer-panel { grid-column: 1; grid-row: 1; color: #1f2023; font-size: 17px; font-weight: 700; letter-spacing: .04em; padding-top: 42px; }
 .timer-toggle { background: #5d8790; border-radius: 999px; color: #fff; font-size: 11px; margin-left: 8px; padding: 5px 9px; vertical-align: 2px; }
