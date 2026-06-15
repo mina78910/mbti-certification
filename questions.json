@@ -2,22 +2,21 @@
   "exam": {
     "id": "mbti-basic-certification-001",
     "title": "MBTI基礎認定試験",
-    "description": "MBTIの基本概念・4つの指標・心理機能・実践知識を確認する試験です。",
+    "description": "8つの心理機能の定義・特徴と実践・16タイプとの対応付けを確認する試験です。",
     "passingScore": 60,
     "timeLimitMinutes": 20,
     "shuffleQuestions": true,
     "shuffleOptions": true
   },
   "categories": [
-    "基本概念",
-    "4つの指標",
-    "心理機能",
-    "実践・その他"
+    "8つの心理機能の定義",
+    "心理機能の特徴・実践",
+    "心理機能と16タイプの対応付け"
   ],
   "questions": [
     {
       "id": "Q001",
-      "category": "基本概念",
+      "category": "8つの心理機能の定義",
       "difficulty": 1,
       "type": "single",
       "question": "MBTIが主に示そうとしているものはどれですか？",
@@ -33,7 +32,7 @@
     },
     {
       "id": "Q002",
-      "category": "基本概念",
+      "category": "8つの心理機能の定義",
       "difficulty": 1,
       "type": "multiple",
       "question": "MBTIを理解するうえで適切な考え方をすべて選んでください。",
@@ -49,7 +48,7 @@
     },
     {
       "id": "Q003",
-      "category": "基本概念",
+      "category": "8つの心理機能の定義",
       "difficulty": 1,
       "type": "single",
       "question": "MBTIのタイプが16種類になる理由として正しいものはどれですか？",
@@ -65,7 +64,7 @@
     },
     {
       "id": "Q004",
-      "category": "基本概念",
+      "category": "8つの心理機能の定義",
       "difficulty": 2,
       "type": "single",
       "question": "MBTIにおける「好み」に最も近い説明はどれですか？",
@@ -81,7 +80,7 @@
     },
     {
       "id": "Q005",
-      "category": "基本概念",
+      "category": "8つの心理機能の定義",
       "difficulty": 2,
       "type": "single",
       "question": "同じMBTIタイプの2人の行動が異なる主な理由として、最も適切なものはどれですか？",
@@ -97,7 +96,7 @@
     },
     {
       "id": "Q006",
-      "category": "4つの指標",
+      "category": "8つの心理機能の定義",
       "difficulty": 1,
       "type": "single",
       "question": "EとIの指標が主に表しているものはどれですか？",
@@ -113,7 +112,7 @@
     },
     {
       "id": "Q007",
-      "category": "4つの指標",
+      "category": "8つの心理機能の定義",
       "difficulty": 1,
       "type": "single",
       "question": "SとNの違いとして最も適切なものはどれですか？",
@@ -129,7 +128,7 @@
     },
     {
       "id": "Q008",
-      "category": "4つの指標",
+      "category": "心理機能の特徴・実践",
       "difficulty": 1,
       "type": "multiple",
       "question": "TとFに関する説明として適切なものをすべて選んでください。",
@@ -145,7 +144,7 @@
     },
     {
       "id": "Q009",
-      "category": "4つの指標",
+      "category": "心理機能の特徴・実践",
       "difficulty": 1,
       "type": "single",
       "question": "JとPの違いとして最も適切なものはどれですか？",
@@ -161,7 +160,7 @@
     },
     {
       "id": "Q010",
-      "category": "4つの指標",
+      "category": "心理機能の特徴・実践",
       "difficulty": 2,
       "type": "multiple",
       "question": "MBTIの4つの指標について正しいものをすべて選んでください。",
@@ -177,7 +176,7 @@
     },
     {
       "id": "Q011",
-      "category": "心理機能",
+      "category": "心理機能の特徴・実践",
       "difficulty": 2,
       "type": "single",
       "question": "心理機能における「知覚機能」の組み合わせはどれですか？",
@@ -193,7 +192,7 @@
     },
     {
       "id": "Q012",
-      "category": "心理機能",
+      "category": "心理機能の特徴・実践",
       "difficulty": 2,
       "type": "single",
       "question": "心理機能における「判断機能」の組み合わせはどれですか？",
@@ -209,7 +208,7 @@
     },
     {
       "id": "Q013",
-      "category": "心理機能",
+      "category": "心理機能の特徴・実践",
       "difficulty": 2,
       "type": "single",
       "question": "外向的直観（Ne）の特徴として最も適切なものはどれですか？",
@@ -225,7 +224,7 @@
     },
     {
       "id": "Q014",
-      "category": "心理機能",
+      "category": "心理機能の特徴・実践",
       "difficulty": 2,
       "type": "multiple",
       "question": "外向的思考（Te）の特徴として適切なものをすべて選んでください。",
@@ -241,7 +240,7 @@
     },
     {
       "id": "Q015",
-      "category": "心理機能",
+      "category": "心理機能と16タイプの対応付け",
       "difficulty": 3,
       "type": "single",
       "question": "内向的感情（Fi）の説明として最も適切なものはどれですか？",
@@ -257,7 +256,7 @@
     },
     {
       "id": "Q016",
-      "category": "実践・その他",
+      "category": "心理機能と16タイプの対応付け",
       "difficulty": 1,
       "type": "single",
       "question": "MBTIを職場で活用する方法として最も適切なものはどれですか？",
@@ -273,7 +272,7 @@
     },
     {
       "id": "Q017",
-      "category": "実践・その他",
+      "category": "心理機能と16タイプの対応付け",
       "difficulty": 2,
       "type": "multiple",
       "question": "タイプが分からない相手と接するときに有効な対応をすべて選んでください。",
@@ -289,7 +288,7 @@
     },
     {
       "id": "Q018",
-      "category": "実践・その他",
+      "category": "心理機能と16タイプの対応付け",
       "difficulty": 2,
       "type": "single",
       "question": "診断結果に違和感がある場合の対応として最も適切なものはどれですか？",
@@ -305,7 +304,7 @@
     },
     {
       "id": "Q019",
-      "category": "実践・その他",
+      "category": "心理機能と16タイプの対応付け",
       "difficulty": 2,
       "type": "single",
       "question": "「F型だから論理的な説明は苦手」と判断することの問題点はどれですか？",
@@ -321,7 +320,7 @@
     },
     {
       "id": "Q020",
-      "category": "実践・その他",
+      "category": "心理機能と16タイプの対応付け",
       "difficulty": 3,
       "type": "multiple",
       "question": "MBTIを扱う際に避けるべき行動をすべて選んでください。",
