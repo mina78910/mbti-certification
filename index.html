@@ -1,1 +1,82 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBTI認定 Web試験</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-cloud" aria-label="MBTI certification">
+        <span>mbti</span>
+        <strong>certification</strong>
+      </div>
+      <nav class="top-nav" aria-label="メインナビゲーション">
+        <a href="#notice">領収書</a>
+        <a href="#application" class="active">試験のお申込</a>
+        <a href="#exam">受験スケジュール／履歴</a>
+        <a href="#home">ホーム</a>
+      </nav>
+    </header>
 
+    <main class="page-shell">
+      <section id="notice" class="notice-panel" aria-labelledby="notice-title">
+        <h1 id="notice-title">【システムメンテナンスのお知らせ】</h1>
+        <p>2026 年 6 月 20 日 午前 9:00 ～ 午後 1:00 にシステムメンテナンスを予定しています。メンテナンス中は Web 試験アプリへアクセスいただけません。予めご了承ください。</p>
+        <p><strong>※最近、クレジットカード会社側で不正利用の防止対策が強化され、ネット上の決済が承認されず、申込が成功しないケースがあります。</strong>本人からカード会社に事前連絡することにより、改善されることがあります。</p>
+        <h2>【オンライン受験: セキュリティブラウザに関するご案内】</h2>
+        <p>オンライン監督試験を受ける方は、受験日までに専用ブラウザをダウンロードする必要があります。未実施の場合、試験開始が遅れ、キャンセル料が発生する可能性がありますのでご注意ください。</p>
+        <h2>【オンライン受験: 問い合わせ先について】</h2>
+        <p>MBTI認定 Web試験 サポートセンター</p>
+        <ul>
+          <li>メール: support@example.com</li>
+          <li class="chat-callout">チャット: <a href="#application">こちら</a> のページ右下 “Chat with an Expert（Contact Us）” をクリック</li>
+        </ul>
+      </section>
+
+      <section id="application" class="card application-card" aria-labelledby="application-title">
+        <div class="section-heading">
+          <p class="eyebrow">Online Exam Application</p>
+          <h2 id="application-title">試験のお申込</h2>
+          <p>下記の注意事項をご確認のうえ、準備ができたら試験を開始してください。</p>
+        </div>
+        <form id="application-form" class="application-form">
+          <div class="application-summary" aria-label="受験前の確認事項">
+            <h3>受験前の確認</h3>
+            <ul>
+              <li>試験中はブラウザを閉じず、安定した通信環境で受験してください。</li>
+              <li>最後の問題まで進むと「全問見直し」または「試験を終了する」を選択できます。</li>
+              <li>この画面で氏名・メール・受験区分・希望受験日・連絡事項の入力は不要です。</li>
+            </ul>
+          </div>
+          <button class="primary-button" type="submit">試験を開始する</button>
+        </form>
+      </section>
+
+      <section id="exam" class="card exam-card is-hidden" aria-live="polite">
+        <div class="exam-topline">
+          <div>
+            <p class="eyebrow">MBTI Certification Exam</p>
+            <h2 id="exam-title">試験問題</h2>
+          </div>
+          <div class="progress-badge"><span id="current-number">1</span>/<span id="total-number">0</span></div>
+        </div>
+        <div class="progress-track"><div id="progress-bar"></div></div>
+        <article id="question-panel" class="question-panel"></article>
+        <div class="exam-actions">
+          <button id="prev-button" class="secondary-button" type="button">前の問題</button>
+          <button id="next-button" class="primary-button" type="button">次の問題</button>
+        </div>
+        <div id="finish-actions" class="finish-actions is-hidden">
+          <button id="review-button" class="secondary-button" type="button">全問見直し</button>
+          <button id="finish-button" class="danger-button" type="button">試験を終了する</button>
+        </div>
+      </section>
+
+      <section id="result" class="card result-card is-hidden"></section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
