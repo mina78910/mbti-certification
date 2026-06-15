@@ -38,12 +38,10 @@ let timerId = null;
 let isTimerHidden = false;
 const examDurationSeconds = 90 * 60;
 const resultTopics = [
-  '外向的直観（Ne）',
-  '内向的感覚（Si）',
-  '外向的思考（Te）',
-  '内向的感情（Fi）',
-  '外向的感情（Fe）',
-  '内向的思考（Ti）',
+  '基本概念',
+  '4つの指標',
+  '心理機能',
+  '実践・その他',
 ];
 
 async function loadQuestions() {
@@ -229,8 +227,8 @@ function getTopicScores() {
 function finishExam() {
   saveCurrentAnswer();
   const correctCount = questions.filter(isCorrect).length;
-  const percentage = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 0;
-  const isPassed = percentage >= 70;
+  const passingScore = Math.ceil(questions.length * 0.6);
+  const isPassed = correctCount >= passingScore;
   const elapsedSeconds = examDurationSeconds - remainingSeconds;
   resultCompletedDate.textContent = formatJapaneseDate(new Date());
   resultDuration.textContent = formatDuration(elapsedSeconds);
@@ -243,7 +241,7 @@ function finishExam() {
   `).join('');
   resultMessage.textContent = isPassed
     ? 'おめでとうございます！このたびは、認定試験に見事合格され、MBTI 認定 Web試験に認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
-    : '今回は合格基準に届きませんでした。トピック別の正答率を確認し、復習のうえ再受験をご検討ください。';
+    : '今回は合格基準（出題問題数の6割）に届きませんでした。カテゴリ別の正答率は参考値として確認し、復習のうえ再受験をご検討ください。';
   stopTimer();
   document.body.classList.remove('exam-mode', 'review-mode');
   document.body.classList.add('result-mode');
