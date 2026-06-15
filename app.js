@@ -3,6 +3,7 @@ const examCard = document.querySelector('#exam');
 const reviewCard = document.querySelector('#review');
 const resultPage = document.querySelector('#results');
 const questionPanel = document.querySelector('#question-panel');
+const answerPanel = document.querySelector('#answer-panel');
 const currentNumber = document.querySelector('#current-number');
 const totalNumber = document.querySelector('#total-number');
 const progressBar = document.querySelector('#progress-bar');
@@ -31,6 +32,7 @@ let questions = [];
 let currentIndex = 0;
 let answers = {};
 let markedQuestions = {};
+let revealedExplanations = {};
 let remainingSeconds = 90 * 60;
 let timerId = null;
 let isTimerHidden = false;
@@ -112,6 +114,7 @@ function renderQuestion() {
   const selectedAnswers = answers[question.id] || [];
   const isMarked = Boolean(markedQuestions[question.id]);
   const inputType = optionInputType(question);
+  const isExplanationRevealed = Boolean(revealedExplanations[question.id]);
   currentNumber.textContent = currentIndex + 1;
   progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
   prevButton.disabled = currentIndex === 0;
@@ -136,6 +139,18 @@ function renderQuestion() {
       <input id="mark-for-review" type="checkbox" ${isMarked ? 'checked' : ''} />
       <span>Mark this item for later review.</span>
     </label>
+  `;
+
+  answerPanel.innerHTML = `
+    <button class="answer-toggle-button secondary-button" type="button" aria-expanded="${isExplanationRevealed}" aria-controls="answer-explanation-content">
+      回答・解説を表示する
+    </button>
+    <div id="answer-explanation-content" class="answer-explanation-content ${isExplanationRevealed ? '' : 'is-hidden'}">
+      <p class="answer-heading">正解</p>
+      <p class="answer-correct">${getCorrectAnswerText(question)}</p>
+      <p class="answer-heading">解説</p>
+      <p class="answer-copy">${question.explanation}</p>
+    </div>
   `;
 }
 
@@ -172,6 +187,15 @@ function isCorrect(question) {
   const selected = [...(answers[question.id] || [])].sort();
   const correct = [...question.correctAnswers].sort();
   return selected.length === correct.length && selected.every((answer, index) => answer === correct[index]);
+}
+
+function getCorrectAnswerText(question) {
+  return question.correctAnswers
+    .map((answerId) => {
+      const option = question.options.find(({ id }) => id === answerId);
+      return option ? `${option.id}. ${option.text}` : answerId;
+    })
+    .join(' / ');
 }
 
 function formatJapaneseDate(date) {
@@ -258,6 +282,7 @@ form.addEventListener('submit', async (event) => {
   currentIndex = 0;
   answers = {};
   markedQuestions = {};
+  revealedExplanations = {};
   renderQuestion();
   startTimer();
   examCard.scrollIntoView({ behavior: 'smooth' });
@@ -266,6 +291,15 @@ form.addEventListener('submit', async (event) => {
 prevButton.addEventListener('click', () => {
   saveCurrentAnswer();
   currentIndex = Math.max(0, currentIndex - 1);
+  renderQuestion();
+});
+
+answerPanel.addEventListener('click', (event) => {
+  const button = event.target.closest('.answer-toggle-button');
+  if (!button) return;
+  saveCurrentAnswer();
+  const question = questions[currentIndex];
+  revealedExplanations[question.id] = true;
   renderQuestion();
 });
 
@@ -316,4 +350,5 @@ timerToggle.addEventListener('click', () => {
 
 loadQuestions().catch((error) => {
   questionPanel.innerHTML = `<p class="incorrect">${error.message}</p>`;
+  answerPanel.innerHTML = '';
 });

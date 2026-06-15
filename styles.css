@@ -176,6 +176,37 @@ body.exam-mode .exam-card { display: flex; }
 .option-row span strong { font-weight: 400; }
 .review-later { display: flex; gap: 8px; align-items: center; margin-top: 36px; color: #1f2023; font-size: 13px; font-weight: 700; }
 .review-later input { width: auto; }
+
+.answer-explanation {
+  margin: 180px 0 40px;
+  max-width: 760px;
+}
+.answer-toggle-button {
+  border-radius: 3px;
+  min-width: 220px;
+}
+.answer-explanation-content {
+  background: #f7fbfd;
+  border: 1px solid #b9d2dd;
+  border-left: 5px solid var(--brand);
+  color: #1f2023;
+  line-height: 1.65;
+  margin-top: 16px;
+  padding: 16px 18px;
+}
+.answer-heading {
+  color: #285468;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.answer-correct,
+.answer-copy {
+  margin: 0 0 14px;
+}
+.answer-copy:last-child {
+  margin-bottom: 0;
+}
 .question-action-row { display: flex; justify-content: flex-end; gap: 8px; align-items: center; margin-top: auto; }
 .exam-actions, .finish-actions { display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
 .exam-actions button, .finish-actions button { border-radius: 0; font-size: 14px; min-width: 80px; padding: 10px 13px; }
