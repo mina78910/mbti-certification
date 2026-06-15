@@ -10,10 +10,15 @@ const nextButton = document.querySelector('#next-button');
 const finishActions = document.querySelector('#finish-actions');
 const reviewButton = document.querySelector('#review-button');
 const finishButton = document.querySelector('#finish-button');
+const timerDisplay = document.querySelector('#timer-display');
+const timerToggle = document.querySelector('#timer-toggle');
 
 let questions = [];
 let currentIndex = 0;
 let answers = {};
+let remainingSeconds = 90 * 60;
+let timerId = null;
+let isTimerHidden = false;
 
 async function loadQuestions() {
   const response = await fetch('./questions.json');
@@ -31,8 +36,38 @@ function optionInputType(question) {
 function saveCurrentAnswer() {
   const question = questions[currentIndex];
   if (!question) return;
-  const checked = [...questionPanel.querySelectorAll('input:checked')].map((input) => input.value);
+  const checked = [...questionPanel.querySelectorAll(`input[name="${question.id}"]:checked`)].map((input) => input.value);
   answers[question.id] = checked;
+}
+
+function formatTime(totalSeconds) {
+  const hours = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+  const minutes = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+  const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+function updateTimerDisplay() {
+  timerDisplay.textContent = isTimerHidden ? '--:--:--' : formatTime(remainingSeconds);
+}
+
+function startTimer() {
+  clearInterval(timerId);
+  remainingSeconds = 90 * 60;
+  updateTimerDisplay();
+  timerId = setInterval(() => {
+    remainingSeconds = Math.max(0, remainingSeconds - 1);
+    updateTimerDisplay();
+    if (remainingSeconds === 0) {
+      clearInterval(timerId);
+      finishExam();
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerId);
+  timerId = null;
 }
 
 function renderQuestion() {
@@ -42,12 +77,15 @@ function renderQuestion() {
   currentNumber.textContent = currentIndex + 1;
   progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
   prevButton.disabled = currentIndex === 0;
-  nextButton.textContent = currentIndex === questions.length - 1 ? '回答を保存' : '次の問題';
+  nextButton.textContent = 'Next >';
   finishActions.classList.toggle('is-hidden', currentIndex !== questions.length - 1);
 
   questionPanel.innerHTML = `
-    <div class="question-meta">${question.id} / ${question.type === 'multiple' ? '複数選択' : '単一選択'}</div>
-    <p class="question-text">${question.question}</p>
+    <div>
+      <span class="question-meta">${currentIndex + 1} of ${questions.length}.</span>
+      <p class="question-text"> ${question.question}</p>
+    </div>
+    <p class="question-prompt">What is the best answer?</p>
     <div class="options">
       ${question.options.map((option) => `
         <label class="option-row">
@@ -56,6 +94,10 @@ function renderQuestion() {
         </label>
       `).join('')}
     </div>
+    <label class="review-later">
+      <input type="checkbox" />
+      <span>Mark this item for later review.</span>
+    </label>
   `;
 }
 
@@ -80,6 +122,8 @@ function finishExam() {
       </div>
     `).join('')}
   `;
+  stopTimer();
+  document.body.classList.remove('exam-mode');
   examCard.classList.add('is-hidden');
   resultCard.classList.remove('is-hidden');
   resultCard.scrollIntoView({ behavior: 'smooth' });
@@ -90,11 +134,13 @@ form.addEventListener('submit', async (event) => {
   if (questions.length === 0) {
     await loadQuestions();
   }
+  document.body.classList.add('exam-mode');
   examCard.classList.remove('is-hidden');
   resultCard.classList.add('is-hidden');
   currentIndex = 0;
   answers = {};
   renderQuestion();
+  startTimer();
   examCard.scrollIntoView({ behavior: 'smooth' });
 });
 
@@ -119,6 +165,13 @@ reviewButton.addEventListener('click', () => {
 });
 
 finishButton.addEventListener('click', finishExam);
+
+timerToggle.addEventListener('click', () => {
+  isTimerHidden = !isTimerHidden;
+  timerToggle.textContent = isTimerHidden ? 'Show' : 'Hide';
+  timerToggle.setAttribute('aria-pressed', String(isTimerHidden));
+  updateTimerDisplay();
+});
 
 loadQuestions().catch((error) => {
   questionPanel.innerHTML = `<p class="incorrect">${error.message}</p>`;
