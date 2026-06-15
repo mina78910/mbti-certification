@@ -90,7 +90,6 @@ async function loadQuestions() {
   examDurationSeconds = (examConfig.timeLimitMinutes || 20) * 60;
   remainingSeconds = examDurationSeconds;
   totalNumber.textContent = questions.length;
-  document.querySelector('#exam-title').textContent = examConfig.title || 'MBTI Certification Exam';
   updateTimerDisplay();
 }
 
@@ -367,7 +366,7 @@ function finishExam() {
     </div>
   `).join('');
   resultMessage.textContent = isPassed
-    ? 'おめでとうございます！このたびは、認定試験に見事合格され、MBTI 認定 Web試験に認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
+    ? 'おめでとうございます！このたびは、認定試験に見事合格され、MBTI 認定 コンサルタントに認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
     : `今回は合格基準（${passingScore}%）に届きませんでした。カテゴリ別の正答率は参考値として確認し、復習のうえ再受験をご検討ください。`;
   isExamFinished = true;
   stopTimer();
