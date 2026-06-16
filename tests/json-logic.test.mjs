@@ -2,12 +2,12 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const examFiles = [
-  { path: '../questions.json', expectedQuestionCount: 24, expectedTimeLimitMinutes: 30, expectedCategories: {
+  { path: '../questions.json', expectedQuestionCount: 24, expectedTimeLimitMinutes: 45, expectedCategories: {
     '8つの心理機能の定義': 8,
     '心理機能の特徴・実践': 8,
     '心理機能と16タイプの対応付け': 8,
   } },
-  { path: '../associate-questions.json', expectedQuestionCount: 16, expectedTimeLimitMinutes: 20, expectedCategories: {
+  { path: '../associate-questions.json', expectedQuestionCount: 16, expectedTimeLimitMinutes: 30, expectedCategories: {
     'MBTIの基本概念': 4,
     '4つの指標の定義': 4,
     '4つの指標の実践': 8,
