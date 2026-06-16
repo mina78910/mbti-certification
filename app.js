@@ -219,7 +219,7 @@ function updateNavigationControls() {
   prevButton.disabled = currentIndex === 0;
   nextButton.disabled = lastQuestion;
   nextButton.setAttribute('aria-disabled', String(lastQuestion));
-  finishActions.classList.toggle('is-hidden', !lastQuestion);
+  finishActions.classList.remove('is-hidden');
 }
 
 function renderQuestion() {
