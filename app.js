@@ -23,6 +23,7 @@ const submitModal = document.querySelector('#submit-modal');
 const modalCancelButton = document.querySelector('#modal-cancel-button');
 const modalConfirmButton = document.querySelector('#modal-confirm-button');
 const resultBackButton = document.querySelector('#result-back-button');
+const resultExamName = document.querySelector('#result-exam-name');
 const resultCompletedDate = document.querySelector('#result-completed-date');
 const resultDuration = document.querySelector('#result-duration');
 const resultStatus = document.querySelector('#result-status');
@@ -113,6 +114,7 @@ function updateStartScreen() {
   startExamTime.textContent = `${timeLimitMinutes}分`;
   startPassingScore.textContent = `${passingScore}%`;
   startQuestionCount.textContent = `${questions.length}問`;
+  resultExamName.textContent = title;
 }
 
 function resetExamState() {
@@ -458,7 +460,7 @@ function finishExam() {
     </div>
   `).join('');
   resultMessage.textContent = isPassed
-    ? 'おめでとうございます！このたびは、認定試験に見事合格され、認定 MBTI スペシャリストに認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。'
+    ? `おめでとうございます！このたびは、認定試験に見事合格され、${examConfig.title || defaultExamTitle}に認定されました。認定プロフェッショナルが集う、世界規模のコミュニティへのご参加を、心より歓迎いたします。`
     : `今回は合格基準（${passingScore}%）に届きませんでした。カテゴリ別の正答率は参考値として確認し、復習のうえ再受験をご検討ください。`;
   isExamFinished = true;
   stopTimer();
