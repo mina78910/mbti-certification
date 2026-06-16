@@ -1,4 +1,5 @@
 const form = document.querySelector('#application-form');
+const examStartCard = document.querySelector('#exam-start');
 const examCard = document.querySelector('#exam');
 const reviewCard = document.querySelector('#review');
 const resultPage = document.querySelector('#results');
@@ -31,6 +32,11 @@ const resultDetailButton = document.querySelector('#result-detail-button');
 const resultDetailPage = document.querySelector('#result-detail');
 const resultDetailList = document.querySelector('#result-detail-list');
 const resultDetailBackButton = document.querySelector('#result-detail-back-button');
+const startExamName = document.querySelector('#start-exam-name');
+const startExamTime = document.querySelector('#start-exam-time');
+const startPassingScore = document.querySelector('#start-passing-score');
+const startQuestionCount = document.querySelector('#start-question-count');
+const startExamButton = document.querySelector('#start-exam-button');
 
 let examConfig = {};
 let categories = [];
@@ -45,6 +51,8 @@ let timerId = null;
 let isTimerHidden = false;
 let examDurationSeconds = 20 * 60;
 let isExamFinished = false;
+
+const defaultExamTitle = '認定MBTIコンサルタント';
 
 function shuffleItems(items) {
   const shuffled = [...items];
@@ -90,8 +98,56 @@ async function loadQuestions() {
   examDurationSeconds = (examConfig.timeLimitMinutes || 20) * 60;
   remainingSeconds = examDurationSeconds;
   totalNumber.textContent = questions.length;
-  document.querySelector('#exam-title').textContent = examConfig.title || '';
+  document.querySelector('#exam-title').textContent = examConfig.title || defaultExamTitle;
+  updateStartScreen();
   updateTimerDisplay();
+}
+
+function updateStartScreen() {
+  const title = examConfig.title || defaultExamTitle;
+  const timeLimitMinutes = examConfig.timeLimitMinutes || 20;
+  const passingScore = examConfig.passingScore || 80;
+  startExamName.textContent = title;
+  startExamTime.textContent = `${timeLimitMinutes}分`;
+  startPassingScore.textContent = `${passingScore}%`;
+  startQuestionCount.textContent = `${questions.length}問`;
+}
+
+function resetExamState() {
+  questions = prepareQuestions(sourceQuestions);
+  totalNumber.textContent = questions.length;
+  currentIndex = 0;
+  answers = {};
+  markedQuestions = {};
+  revealedExplanations = {};
+  isExamFinished = false;
+  remainingSeconds = examDurationSeconds;
+  updateStartScreen();
+  updateTimerDisplay();
+}
+
+function showExamStartPage() {
+  document.body.classList.add('exam-start-mode');
+  document.body.classList.remove('exam-mode', 'review-mode', 'result-mode', 'result-detail-mode');
+  examStartCard.classList.remove('is-hidden');
+  examCard.classList.add('is-hidden');
+  reviewCard.classList.add('is-hidden');
+  resultPage.classList.add('is-hidden');
+  resultDetailPage.classList.add('is-hidden');
+  examStartCard.scrollIntoView({ behavior: 'smooth' });
+}
+
+function beginExam() {
+  document.body.classList.add('exam-mode');
+  document.body.classList.remove('exam-start-mode', 'review-mode', 'result-mode', 'result-detail-mode');
+  examStartCard.classList.add('is-hidden');
+  examCard.classList.remove('is-hidden');
+  reviewCard.classList.add('is-hidden');
+  resultPage.classList.add('is-hidden');
+  resultDetailPage.classList.add('is-hidden');
+  renderQuestion();
+  startTimer();
+  examCard.scrollIntoView({ behavior: 'smooth' });
 }
 
 function optionInputType(question) {
@@ -140,7 +196,8 @@ function stopTimer() {
 function showExamPage(index = currentIndex) {
   currentIndex = Math.min(Math.max(index, 0), questions.length - 1);
   document.body.classList.add('exam-mode');
-  document.body.classList.remove('review-mode', 'result-mode', 'result-detail-mode');
+  document.body.classList.remove('exam-start-mode', 'review-mode', 'result-mode', 'result-detail-mode');
+  examStartCard.classList.add('is-hidden');
   reviewCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
   resultDetailPage.classList.add('is-hidden');
@@ -219,7 +276,7 @@ function showReviewPage() {
   saveCurrentAnswer();
   renderReviewPage();
   document.body.classList.add('review-mode');
-  document.body.classList.remove('exam-mode', 'result-mode', 'result-detail-mode');
+  document.body.classList.remove('exam-start-mode', 'exam-mode', 'result-mode', 'result-detail-mode');
   examCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
   resultDetailPage.classList.add('is-hidden');
@@ -320,8 +377,9 @@ function renderResultDetailPage() {
 }
 
 function showResultPage() {
-  document.body.classList.remove('exam-mode', 'review-mode', 'result-detail-mode');
+  document.body.classList.remove('exam-start-mode', 'exam-mode', 'review-mode', 'result-detail-mode');
   document.body.classList.add('result-mode');
+  examStartCard.classList.add('is-hidden');
   examCard.classList.add('is-hidden');
   reviewCard.classList.add('is-hidden');
   resultDetailPage.classList.add('is-hidden');
@@ -335,8 +393,9 @@ function showResultDetailPage() {
   }
 
   renderResultDetailPage();
-  document.body.classList.remove('exam-mode', 'review-mode', 'result-mode');
+  document.body.classList.remove('exam-start-mode', 'exam-mode', 'review-mode', 'result-mode');
   document.body.classList.add('result-detail-mode');
+  examStartCard.classList.add('is-hidden');
   examCard.classList.add('is-hidden');
   reviewCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
@@ -424,23 +483,11 @@ form.addEventListener('submit', async (event) => {
   if (questions.length === 0) {
     await loadQuestions();
   }
-  document.body.classList.add('exam-mode');
-  document.body.classList.remove('review-mode', 'result-mode', 'result-detail-mode');
-  examCard.classList.remove('is-hidden');
-  reviewCard.classList.add('is-hidden');
-  resultPage.classList.add('is-hidden');
-  resultDetailPage.classList.add('is-hidden');
-  questions = prepareQuestions(sourceQuestions);
-  totalNumber.textContent = questions.length;
-  currentIndex = 0;
-  answers = {};
-  markedQuestions = {};
-  revealedExplanations = {};
-  isExamFinished = false;
-  renderQuestion();
-  startTimer();
-  examCard.scrollIntoView({ behavior: 'smooth' });
+  resetExamState();
+  showExamStartPage();
 });
+
+startExamButton.addEventListener('click', beginExam);
 
 prevButton.addEventListener('click', () => {
   saveCurrentAnswer();
@@ -484,7 +531,8 @@ modalConfirmButton.addEventListener('click', () => {
 });
 
 resultBackButton.addEventListener('click', () => {
-  document.body.classList.remove('review-mode', 'result-mode', 'result-detail-mode');
+  document.body.classList.remove('exam-start-mode', 'review-mode', 'result-mode', 'result-detail-mode');
+  examStartCard.classList.add('is-hidden');
   resultPage.classList.add('is-hidden');
   resultDetailPage.classList.add('is-hidden');
   document.querySelector('#application').scrollIntoView({ behavior: 'smooth' });

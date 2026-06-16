@@ -181,6 +181,41 @@ h2 { margin: 0 0 8px; color: #35454d; }
   min-width: 116px;
   padding: 10px 18px;
 }
+
+.exam-start-card {
+  max-width: 760px;
+}
+.exam-start-meta {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+.exam-start-meta div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid #e4ecef;
+  padding: 12px 0;
+}
+.exam-start-meta dt {
+  color: #285468;
+  font-weight: 700;
+}
+.exam-start-meta dd {
+  color: #1f2023;
+  font-weight: 700;
+  margin: 0;
+}
+.exam-start-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+.exam-start-actions .primary-button {
+  min-width: 180px;
+}
+
 label span { display: block; font-weight: 700; margin-bottom: 7px; }
 input, select, textarea {
   width: 100%;
@@ -216,10 +251,18 @@ button {
   .exam-row-action .primary-button { width: 100%; }
 }
 
+body.exam-start-mode,
 body.exam-mode,
 body.review-mode,
 body.result-mode,
 body.result-detail-mode { background: #fff; }
+body.exam-start-mode .site-header,
+body.exam-start-mode #notice,
+body.exam-start-mode #application,
+body.exam-start-mode #exam,
+body.exam-start-mode #review,
+body.exam-start-mode #results,
+body.exam-start-mode #result-detail,
 body.exam-mode .site-header,
 body.exam-mode #notice,
 body.exam-mode #application,
@@ -240,10 +283,12 @@ body.result-detail-mode #application,
 body.result-detail-mode #exam,
 body.result-detail-mode #review,
 body.result-detail-mode #results { display: none; }
+body.exam-start-mode .page-shell { padding: 38px 18px 60px; min-height: 100vh; }
 body.exam-mode .page-shell { padding: 24px 18px 22px; min-height: 100vh; }
 body.review-mode .page-shell { padding: 38px 18px 60px; min-height: 100vh; }
 body.result-mode .page-shell { padding: 0 15px 32px; min-height: 100vh; }
 body.result-detail-mode .page-shell { padding: 38px 18px 60px; min-height: 100vh; }
+body.exam-start-mode .exam-start-card { display: block; }
 body.exam-mode .exam-card { display: flex; }
 .exam-card {
   max-width: none;
@@ -504,7 +549,8 @@ body.result-detail-mode .result-detail-card { display: block; }
   .exam-actions, .finish-actions { flex: 1 1 0; gap: 4px; min-width: 0; }
   .exam-actions button, .finish-actions button { flex: 1 1 0; font-size: 12px; min-width: 0; padding: 9px 4px; white-space: nowrap; }
   .options { margin-top: clamp(40px, 7vh, 5.5rem); }
-  .review-actions, .submit-modal-actions { align-items: stretch; flex-direction: column; }
+  .exam-start-meta div { grid-template-columns: 1fr; gap: 4px; }
+  .exam-start-actions, .review-actions, .submit-modal-actions { align-items: stretch; flex-direction: column; }
   .result-page { font-size: 16px; padding-bottom: 70px; }
   .result-back-button { bottom: 4px; right: 0; }
   .result-meta { max-width: none; }
