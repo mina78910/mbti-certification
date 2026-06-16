@@ -217,6 +217,7 @@ function renderQuestion() {
   currentNumber.textContent = currentIndex + 1;
   progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
   prevButton.disabled = currentIndex === 0;
+  nextButton.disabled = currentIndex === questions.length - 1;
   nextButton.textContent = '次へ >';
   finishActions.classList.remove('is-hidden');
 
