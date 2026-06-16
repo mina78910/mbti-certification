@@ -4,7 +4,7 @@
     "title": "",
     "description": "8つの心理機能の定義・特徴と実践・16タイプとの対応付けを確認する試験です。",
     "passingScore": 60,
-    "timeLimitMinutes": 20,
+    "timeLimitMinutes": 30,
     "shuffleQuestions": true,
     "shuffleOptions": true
   },

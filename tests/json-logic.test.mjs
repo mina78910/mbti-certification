@@ -2,12 +2,12 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const examFiles = [
-  { path: '../questions.json', expectedQuestionCount: 24, expectedCategories: {
+  { path: '../questions.json', expectedQuestionCount: 24, expectedTimeLimitMinutes: 30, expectedCategories: {
     '8つの心理機能の定義': 8,
     '心理機能の特徴・実践': 8,
     '心理機能と16タイプの対応付け': 8,
   } },
-  { path: '../associate-questions.json', expectedQuestionCount: 16, expectedCategories: {
+  { path: '../associate-questions.json', expectedQuestionCount: 16, expectedTimeLimitMinutes: 20, expectedCategories: {
     'MBTIの基本概念': 4,
     '4つの指標の定義': 4,
     '4つの指標の実践': 8,
@@ -57,7 +57,7 @@ for (const examFile of examFiles) {
 
   assert.equal(typeof data.exam, 'object', `${examFile.path} exam metadata must exist`);
   assert.equal(data.exam.passingScore, 60, `${examFile.path} passing score should match certification threshold`);
-  assert.equal(data.exam.timeLimitMinutes, 20, `${examFile.path} time limit should be 20 minutes`);
+  assert.equal(data.exam.timeLimitMinutes, examFile.expectedTimeLimitMinutes, `${examFile.path} time limit should be ${examFile.expectedTimeLimitMinutes} minutes`);
   assert.deepEqual(data.categories, Object.keys(examFile.expectedCategories));
   assert.equal(questions.length, examFile.expectedQuestionCount, `${examFile.path} question count should match`);
 
