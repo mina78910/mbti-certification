@@ -51,6 +51,7 @@ let timerId = null;
 let isTimerHidden = false;
 let examDurationSeconds = 20 * 60;
 let isExamFinished = false;
+let currentExamSource = 'questions.json';
 
 const defaultExamTitle = '認定MBTIコンサルタント';
 
@@ -85,8 +86,9 @@ function prepareQuestions(rawQuestions) {
   return examConfig.shuffleQuestions ? shuffleItems(preparedQuestions) : preparedQuestions;
 }
 
-async function loadQuestions() {
-  const response = await fetch('./questions.json');
+async function loadQuestions(source = currentExamSource) {
+  currentExamSource = source;
+  const response = await fetch(`./${source}`);
   if (!response.ok) {
     throw new Error('問題データを読み込めませんでした。');
   }
@@ -480,8 +482,10 @@ function closeSubmitModal() {
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
-  if (questions.length === 0) {
-    await loadQuestions();
+  const submitter = event.submitter;
+  const selectedExamSource = submitter?.dataset.examSrc || 'questions.json';
+  if (questions.length === 0 || selectedExamSource !== currentExamSource) {
+    await loadQuestions(selectedExamSource);
   }
   resetExamState();
   showExamStartPage();
