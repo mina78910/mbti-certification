@@ -51,7 +51,50 @@
               <li>この画面で氏名・メール・受験区分・希望受験日・連絡事項の入力は不要です。</li>
             </ul>
           </div>
-          <button class="primary-button" type="submit">試験を開始する</button>
+
+          <div class="exam-selection" aria-label="申し込み可能な試験一覧">
+            <details class="exam-group" open>
+              <summary>
+                <span class="exam-group-toggle" aria-hidden="true"></span>
+                <span>認定MBTIアソシエイト <span lang="en">(Associate Exams)</span></span>
+              </summary>
+              <div class="exam-row is-unavailable">
+                <div class="exam-row-title">認定MBTIアソシエイト</div>
+                <div class="exam-row-description">準備中のため、現在はお申し込みいただけません。</div>
+                <div class="exam-row-code">MBTI-A001</div>
+                <div class="exam-row-format">multiple</div>
+                <div class="exam-row-action"><button class="primary-button" type="button" disabled>お申し込み</button></div>
+              </div>
+            </details>
+
+            <details class="exam-group" open>
+              <summary>
+                <span class="exam-group-toggle" aria-hidden="true"></span>
+                <span>認定MBTIアドミニストレーター <span lang="en">(Administrator Exams)</span></span>
+              </summary>
+              <div class="exam-row is-unavailable">
+                <div class="exam-row-title">認定MBTIアドミニストレーター</div>
+                <div class="exam-row-description">準備中のため、現在はお申し込みいただけません。</div>
+                <div class="exam-row-code">MBTI-AD001</div>
+                <div class="exam-row-format">multiple</div>
+                <div class="exam-row-action"><button class="primary-button" type="button" disabled>お申し込み</button></div>
+              </div>
+            </details>
+
+            <details class="exam-group" open>
+              <summary>
+                <span class="exam-group-toggle" aria-hidden="true"></span>
+                <span>認定MBTIコンサルタント <span lang="en">(Consultant Exams)</span></span>
+              </summary>
+              <div class="exam-row">
+                <div class="exam-row-title">認定MBTIコンサルタント</div>
+                <div class="exam-row-description">認定MBTIコンサルタント試験に申し込み、現在の設問で受験を開始します。</div>
+                <div class="exam-row-code">MBTI-C001</div>
+                <div class="exam-row-format">multiple</div>
+                <div class="exam-row-action"><button class="primary-button" type="submit">お申し込み</button></div>
+              </div>
+            </details>
+          </div>
         </form>
       </section>
 
