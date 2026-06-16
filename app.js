@@ -210,6 +210,18 @@ function showExamPage(index = currentIndex) {
   examCard.scrollIntoView({ behavior: 'smooth' });
 }
 
+function isLastQuestion() {
+  return currentIndex === questions.length - 1;
+}
+
+function updateNavigationControls() {
+  const lastQuestion = isLastQuestion();
+  prevButton.disabled = currentIndex === 0;
+  nextButton.disabled = lastQuestion;
+  nextButton.setAttribute('aria-disabled', String(lastQuestion));
+  finishActions.classList.toggle('is-hidden', !lastQuestion);
+}
+
 function renderQuestion() {
   const question = questions[currentIndex];
   const selectedAnswers = answers[question.id] || [];
@@ -218,10 +230,8 @@ function renderQuestion() {
   const isExplanationRevealed = Boolean(revealedExplanations[question.id]);
   currentNumber.textContent = currentIndex + 1;
   progressBar.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
-  prevButton.disabled = currentIndex === 0;
-  nextButton.disabled = currentIndex === questions.length - 1;
   nextButton.textContent = '次へ >';
-  finishActions.classList.remove('is-hidden');
+  updateNavigationControls();
 
   questionPanel.innerHTML = `
     <div class="question-stem">
@@ -512,12 +522,17 @@ answerPanel.addEventListener('click', (event) => {
 });
 
 nextButton.addEventListener('click', () => {
-  saveCurrentAnswer();
-  if (currentIndex < questions.length - 1) {
-    currentIndex += 1;
-    renderQuestion();
+  if (isLastQuestion()) {
+    updateNavigationControls();
+    return;
   }
+  saveCurrentAnswer();
+  currentIndex += 1;
+  renderQuestion();
 });
+
+nextButton.addEventListener('mouseenter', updateNavigationControls);
+nextButton.addEventListener('focus', updateNavigationControls);
 
 reviewButton.addEventListener('click', showReviewPage);
 finishButton.addEventListener('click', openSubmitModal);
